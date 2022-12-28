@@ -1,0 +1,55 @@
+@import '../../../styles/globals';
+
+.navbar{
+    ul{
+        @extend .row;
+        align-items: center;
+        justify-content: space-between;
+        list-style: none;
+        font-size: 20px;
+        li{
+            @extend .row;
+            gap:25px;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+    a{
+        color:$dark-text-color;
+    }
+    a:hover{
+        color:black;
+
+    }
+    background-color: white;
+    .login_button{
+        border: 1px solid black;
+        color : black;
+        padding: 10px 25px;
+        border-radius: 25px;
+        transition: all 500ms ease;
+    }
+    .login_button:hover{
+       background-color: black;
+       color:white
+    }
+    border-bottom: 0.1px solid $light-color;
+}
+.navbar.dark{
+    border-bottom: 0.1px solid #80808047;
+    background-color: black !important;
+    a{
+        color:white;
+    }
+    .login_button{
+        border: 1px solid white;
+        color : white;
+        padding: 10px 25px;
+        border-radius: 25px;
+        transition: all 500ms ease;
+    }
+    .login_button:hover{
+       background-color: white;
+       color:black
+    }
+}

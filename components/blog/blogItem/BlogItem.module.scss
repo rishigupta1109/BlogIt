@@ -1,0 +1,36 @@
+@import '../../../styles/globals';
+
+.container{
+    cursor: pointer;
+    width:28%;
+    padding: 20px;
+    margin: 5px 15px;
+    background-color: $light-color;
+    @extend .column;
+    justify-content: center;
+    align-items: center;
+    h3{
+        color:$dark-color-secondary;
+    }
+    transition: all 500ms ease-in-out;
+}
+.container:hover{
+    transform: translate(0,-5px);
+    transform: scale(1.05);
+}
+.container.dark{
+    background-color: $dark-color-secondary;
+    h3 {
+            color: white;
+        }
+}
+.info{
+    width: 100%;
+    @extend .row;
+    justify-content: space-between;
+    align-items: center;
+}
+.image{
+    width: 25vw !important;
+    height: 25vw !important;
+}

@@ -1,0 +1,8 @@
+@import './globals.scss';
+
+.homePage{
+    
+    @extend .column;
+    justify-content: baseline;
+    align-items: center;
+}

@@ -1,0 +1,10 @@
+@import url(../../../styles/globals.scss);
+
+div{
+    @extend .row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    font-size: 15px;
+    
+}

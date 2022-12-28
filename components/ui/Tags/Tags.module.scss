@@ -1,0 +1,16 @@
+@import '../../../styles/globals';
+
+.tag{
+    border-radius: 20px;
+    font-size: 15px;
+    text-align: center;
+    padding: 8px 15px;
+    margin:5px 5px;
+}
+.container{
+    margin: 10px 0;
+    width: 100%;
+    @extend .row;
+    justify-content: baseline;
+    align-items: center;
+}

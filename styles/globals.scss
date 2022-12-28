@@ -1,0 +1,21 @@
+
+
+$light-color:antiquewhite;
+$dark-color:black;
+$dark-color-secondary:#252525;
+$dark-text-color:grey;
+
+.row{
+    display: flex;
+    flex-direction: row;
+    font-family: sans-serif;
+}
+.column{
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+.dark {
+    background-color: black;
+    color: white
+}
