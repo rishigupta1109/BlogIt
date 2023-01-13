@@ -1,4 +1,30 @@
+:root{
+--light-color-primary:#B1B2FF;
+--light-color-secondary: #AAC4FF ;
+--light-color-ternary: #EEF1FF ;
+--light-color:  #ffffff;
+
+--dark-color-primary:#371B58;
+--dark-color-secondary:#4C3575 ;
+--dark-color-ternary:#5B4B8A ;
+--dark-color:black;
+}
 html,body{
     margin: 0;
     padding: 0;
+    height:max(100%,100vh);
+}
+.ql-container.ql-snow {
+    border: none !important;
+    
+    font-size: 20px;
+    font-weight: 400;
+}
+.ql-toolbar.ql-snow{
+    font-size: 20px;
+    font-weight: 400;
+    position: sticky;
+    transition: all 500ms ease;
+    top:-60px;
+    z-index: 5;
 }

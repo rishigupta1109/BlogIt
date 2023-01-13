@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from "./CustomInput.module.scss";
 type Props = {
   label: string;
   type: string;
@@ -18,7 +18,7 @@ export default function CustomInput({
   required,
 }: Props) {
   return (
-    <div>
+    <div className={styles.container}>
       <label>{label}</label>
       <input
         type={type}

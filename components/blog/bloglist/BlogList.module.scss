@@ -1,7 +1,9 @@
 @import '../../../styles/globals';
 .bloglist{
-    @extend .row;
-    justify-content: baseline;
-    align-items: center;
-    flex-wrap: wrap;
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,400px);
+    justify-content: center;
+    gap:1.5rem;
+    align-content: center;
 }

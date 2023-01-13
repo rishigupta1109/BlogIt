@@ -1,0 +1,42 @@
+@import './globals.scss';
+
+.container{
+    @extend .column;
+    justify-content: center;
+    align-items: center;
+    .switchBox {
+        @extend .row;
+        justify-content: space-between;
+        align-items: center;
+        h1{
+            margin: 0;
+            padding:15px 25px;
+            height: 100%;
+            cursor: pointer;
+            font-size: 24px;
+        }
+        h1.active{
+            box-shadow: 6px 6px 5px $light-color-primary ;
+            background-color: $light-color-ternary;
+        }
+    }
+}
+.container.dark{
+    h1{
+        color:$light-color-primary;
+    }
+    h1.active{
+        color:$dark-color-secondary;
+    }
+}
+
+.previewContainer{
+    height: 100%;
+        min-height: 85vh;
+        padding-bottom: 100px;
+        @extend .column;
+        justify-content: start;
+        align-items: center;
+        gap: 20px;
+        background-color: $light-color;
+}

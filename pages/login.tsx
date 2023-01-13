@@ -3,7 +3,7 @@ import Form from "../components/ui/Form/Form";
 
 type Props = {};
 
-export default function login({}: Props) {
+export default function loginPage({}: Props) {
   const loginForm = [
     {
       name: "email",
@@ -24,7 +24,15 @@ export default function login({}: Props) {
   };
   return (
     <div>
-      <Form submitHandler={loginHandler} fields={loginForm} />
+      <Form
+        link={{
+          text: "Not have an account?",
+          url: "register",
+        }}
+        heading="Login"
+        submitHandler={loginHandler}
+        fields={loginForm}
+      />
     </div>
   );
 }

@@ -10,8 +10,7 @@ type Props = {
 };
 
 export default function BlogItem({ data }: Props) {
-  const { id, headline, body, tags, image, author, createdAt, description } =
-    data;
+  const { id, title, body, tags, image, author, createdAt, description } = data;
   const { darkMode } = useContext(GlobalContext);
   let classname = styles.container;
   if (darkMode) classname = clsx(classname, styles.dark);
@@ -19,14 +18,16 @@ export default function BlogItem({ data }: Props) {
     <div className={classname}>
       <Image
         src={image}
-        alt={headline}
+        alt={title}
         className={styles.image}
         height={350}
         width={350}
       />
       <Tags tags={tags} />
-      <h1>{headline}</h1>
-      <h3>{description}</h3>
+      <div className={styles.textContainer}>
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </div>
       <div className={styles.info}>
         <p>{author}</p>
         <time>{createdAt.toDateString()}</time>

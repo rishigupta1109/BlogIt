@@ -17,14 +17,15 @@ export default function Tags({ tags }: Props) {
   return (
     <div className={styles.container}>
       {tags.map((tag, index) => {
+        if (tag.trim().length === 0) return null;
         return (
-          <div
+          <span
             key={index}
             className={styles.tag}
             style={{ color: "white", backgroundColor: colors[index % 7] }}
           >
             {tag}
-          </div>
+          </span>
         );
       })}
     </div>

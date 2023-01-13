@@ -9,8 +9,6 @@
 }
 .container{
     margin: 10px 0;
-    width: 100%;
     @extend .row;
-    justify-content: baseline;
     align-items: center;
 }

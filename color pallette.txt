@@ -1,0 +1,14 @@
+light;
+
+#B1B2FF
+#AAC4FF
+#D2DAFF
+#EEF1FF
+
+
+dark :
+
+#371B58
+#4C3575
+#5B4B8A
+#7858A6

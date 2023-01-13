@@ -1,12 +1,20 @@
 @import '../../../styles/globals';
 
 .navbar{
-    ul{
+    a{
+        text-decoration: none;
+    }
+        a.active {
+            color: $light-color-primary !important;
+            font-weight: 700;
+        }
+    ul,.linkContainer{
+        height: 10vh;
         @extend .row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-around;
         list-style: none;
-        font-size: 20px;
+        font-size: 18px;
         li{
             @extend .row;
             gap:25px;
@@ -15,13 +23,16 @@
         }
     }
     a{
+        transition: all 500ms ease;
         color:$dark-text-color;
     }
     a:hover{
-        color:black;
-
+        color:$light-color-primary;
     }
-    background-color: white;
+    a:not(.active):hover{
+        transform: scale(1.1);
+    }
+    background-color: $light-color;
     .login_button{
         border: 1px solid black;
         color : black;
@@ -33,14 +44,15 @@
        background-color: black;
        color:white
     }
-    border-bottom: 0.1px solid $light-color;
 }
 .navbar.dark{
-    border-bottom: 0.1px solid #80808047;
     background-color: black !important;
     a{
         color:white;
     }
+        a:hover {
+            color: $light-color-primary;
+        }
     .login_button{
         border: 1px solid white;
         color : white;
@@ -52,4 +64,66 @@
        background-color: white;
        color:black
     }
+}
+
+@media screen and (max-width:900px){
+    .navbar{
+        position: sticky;
+        top:0;
+        left:0;
+        // position: relative;
+        width:100%;
+        ul{     
+            height:90vh;
+                z-index:2;
+                left:0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                margin:0;
+                padding: 0;
+                background-color: $light-color;
+                li{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    width: 100%;
+                }
+                
+                
+        }
+    }
+    .linkContainer.dark+ul{
+        background-color: black;
+    }
+}
+.menubtnbox {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.line1,
+.line2,
+.line3 {
+    height: 10px;
+    width: 40px;
+    background-color: $light-color-primary;
+    margin: 5px 0;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    transition: all ease-in-out 500ms;
+    -webkit-transition:all  ease-in-out 500ms;
+    -moz-transition:all  ease-in-out 500ms;
+    -ms-transition: all ease-in-out 500ms;
+    -o-transition:all  ease-in-out 500ms;
 }

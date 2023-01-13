@@ -1,0 +1,29 @@
+@import '../../../styles/globals';
+.container{
+        background-color: $light-color-ternary;
+        min-height:85vh;
+        width:100%;
+        min-width: 60vw;
+        .image{
+            width: 100%;
+            height: 50vh;
+            object-fit: cover;
+        }
+        .content{
+            padding:1rem 4rem;
+            .details{
+                width: 100%;
+                @extend .row;
+                justify-content:space-between;
+                align-items: center;
+            }
+            .title{
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 0.5rem;
+            }
+            p{
+                font-size: 20px;
+            }
+        }
+}
