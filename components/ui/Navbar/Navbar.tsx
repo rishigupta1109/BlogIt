@@ -6,6 +6,7 @@ import { GlobalContext } from "../../../store/GlobalContext";
 import CustomButton from "../CustomButton/CustomButton";
 import Logo from "../logo/Logo";
 import ModeToggle from "../ModeToggleButton/ModeToggle";
+import UserDropDown from "../UserDropDown/UserDropDown";
 import styles from "./Navbar.module.scss";
 type Props = {};
 
@@ -94,6 +95,7 @@ function NavLinks({ darkMode, pathname }: INavLinks) {
           label="Sign in"
           link={`/login`}
         />
+        <UserDropDown />
         <ModeToggle />
       </li>
     </ul>
@@ -173,6 +175,15 @@ function MobileNavLinks({ darkMode, pathname }: IMobileNavLinks) {
           <li>
             <Link
               onClick={menuHandler}
+              href={`/profile`}
+              className={pathname === "/profile" ? styles.active : ""}
+            >
+              My Profile
+            </Link>
+          </li>
+          <li>
+            <Link
+              onClick={menuHandler}
               className={pathname === "/createblog" ? styles.active : ""}
               href={`/createblog`}
             >
@@ -197,6 +208,26 @@ function MobileNavLinks({ darkMode, pathname }: IMobileNavLinks) {
               corner="6px"
               label="Sign in"
               link={`/login`}
+            />
+          </li>
+          <li>
+            <CustomButton
+              onClick={menuHandler}
+              hoverbg={
+                darkMode
+                  ? "var(--dark-color-secondary)"
+                  : "var(--dark-color-secondary)"
+              }
+              type="filled"
+              bg={
+                darkMode
+                  ? "var(--dark-color-ternary)"
+                  : "var(--light-color-primary)"
+              }
+              textColor="white"
+              corner="6px"
+              border="none"
+              label="Logout"
             />
           </li>
           <li>

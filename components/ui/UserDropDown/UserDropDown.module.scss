@@ -1,0 +1,79 @@
+@import "../../../styles/globals.scss";
+.container{
+    @extend .column;
+    .profileCard{
+        
+        height: 70px;
+        width:70px;
+        @extend .row;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100%;
+        transition: 500ms linear;
+        
+        img{
+            cursor: pointer;
+            border-radius: 100%;
+        }
+    }
+    .profileCard:hover {
+        background-color: $light-color-ternary;
+    }
+    position: relative;
+    .dropdown{
+        box-shadow: 6px 6px 20px $light-color-primary;
+        z-index: 5;
+        transition: 500ms linear;
+        opacity: 1;
+        @extend .column;
+        justify-content: center;
+        align-items: baseline;
+            width: 150px;
+            justify-content: space-around;
+            align-items: center;
+            position: absolute;
+            border-radius: 6px;
+            top: 70px;
+            left: -40px;
+            backdrop-filter: blur(1px);
+            height: 150px;
+            background: var(--light-color-ternary);
+        span{
+            border-radius: 6px;
+            @extend .row;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            cursor: pointer;
+            transition: 500ms linear;
+            &:not(:first-child):hover{
+                background-color: $light-color-secondary;
+            }
+          
+        }
+       :nth-child(1){
+         font-weight: 600;
+         font-size: 18px;
+       }
+    }
+}
+.dropdown.hide{
+    opacity: 0;
+    top: 80px;
+}
+
+.container.dark{
+    .profileCard:hover {
+            background-color: $dark-color-ternary;
+        }
+    .dropdown{
+        background: var(--dark-color-ternary);
+        span{
+            &:not(:first-child):hover{
+                background-color: $dark-color-secondary;
+            }
+        }
+    }
+}

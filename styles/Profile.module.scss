@@ -1,0 +1,42 @@
+@import './globals.scss';
+.container{
+    height:85vh;
+    width:100%;
+    .header{
+        height: 100px;
+        width: 100%;
+        background-color: $light-color-primary;
+    }
+    .profile{
+        background-color: $light-color-ternary;
+        height: 100%;
+        position: relative;
+        @extend .column;
+        justify-content: baseline;
+        align-items: center;
+        img{
+            top:-50px;
+            position: absolute;
+            border-radius: 100%;
+        }
+        h1{
+            margin-top: 120px;
+        }
+        h3{
+            margin-top: 0;
+        }
+    }
+}
+
+.container.dark{
+    .header{
+        background-color: $dark-color-primary;
+    }
+    .profile{
+        background-color: $dark-color-ternary;
+        img{
+            border: 2px solid $dark-color-primary;
+        }
+    }
+
+}

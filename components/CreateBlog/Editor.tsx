@@ -21,7 +21,7 @@ export interface EditorProps {
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, false] }],
-  ["bold", "italic", "underline", "strike", "blockquote", "link"],
+  ["bold", "italic", "underline", "blockquote", "link"],
   ["code-block"],
   [{ list: "ordered" }, { list: "bullet" }],
   [{ indent: "-1" }, { indent: "+1" }],
@@ -37,10 +37,16 @@ export default function Editor(props: EditorProps) {
     setValue(content);
 
     if (props.onChange) {
-      props.onChange({
-        html: content,
-        markdown: htmlToMarkdown(content),
-      });
+      try {
+        const md = htmlToMarkdown(content);
+        console.log(md);
+        props.onChange({
+          html: content,
+          markdown: md,
+        });
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 

@@ -16,6 +16,7 @@ export default function BlogForm({ setFormData, formData }: Props) {
     setFormData({ ...formData, body: content.markdown });
   };
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 

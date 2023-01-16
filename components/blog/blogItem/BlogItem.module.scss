@@ -13,7 +13,7 @@
         color:$dark-color-secondary;
     }
     transition: all 500ms ease-in-out;
-    div{
+    .textContainer{
         padding: 5px 20px;
         h1{
             font-size: 24px;
@@ -33,6 +33,11 @@
     background-color: $dark-color-secondary;
     h3 {
             color: white;
+        }
+        .textContainer{
+            p{
+                color:$light-color;
+            }
         }
 }
 

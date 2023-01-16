@@ -1,5 +1,7 @@
+import clsx from "clsx";
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../../../store/GlobalContext";
 import { IBlog } from "../../../utils/interfaces";
 import Viewer from "../../CreateBlog/Viewer";
 import Tags from "../../ui/Tags/Tags";
@@ -10,8 +12,13 @@ type Props = {
 
 export default function Blog({ blog }: Props) {
   const tags = blog.tags.split(",").map((tag) => tag.trim());
+  const { darkMode } = useContext(GlobalContext);
   return (
-    <div className={styles.container}>
+    <div
+      className={
+        darkMode ? clsx(styles.container, styles.dark) : styles.container
+      }
+    >
       <Image
         className={styles.image}
         alt={blog?.title}
