@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { GlobalContext } from "../../../store/GlobalContext";
 import { IBlog } from "../../../utils/interfaces";
-import { markdownToHtml } from "../../../utils/Parser";
 import Viewer from "../../CreateBlog/Viewer";
 import Tags from "../../ui/Tags/Tags";
 import styles from "./BlogItem.module.scss";
+import heartIcon from "../../../public/icons/heart.png";
 type Props = {
   data: IBlog;
 };
@@ -23,6 +23,8 @@ export default function BlogItem({ data }: Props) {
   const handleOpenBlog = () => {
     router.push(`/blogs/${id}`);
   };
+  const imageURL =
+    "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
   return (
     <div className={classname} onClick={handleOpenBlog}>
       <Image
@@ -32,14 +34,24 @@ export default function BlogItem({ data }: Props) {
         height={350}
         width={350}
       />
-      <Tags tags={tags} />
+      <div className={styles.infoContainer}>
+        <div className={styles.info}>
+          <Image src={imageURL} alt="profile" height={30} width={30} />
+          <div>
+            <p>{author}</p>
+            <time>{createdAt.toDateString()}</time>
+          </div>
+        </div>
+        <span>
+          <Image src={heartIcon} alt={"heart"} height={30} width={30} />4
+        </span>
+      </div>
       <div className={styles.textContainer}>
         <h1>{title}</h1>
         <Viewer value={description} />
       </div>
-      <div className={styles.info}>
-        <p>{author}</p>
-        <time>{createdAt.toDateString()}</time>
+      <div className={styles.tagContainer}>
+        <Tags tags={tags} />
       </div>
     </div>
   );

@@ -6,8 +6,7 @@
     margin: 5px 15px;
     background-color: $light-color-ternary;
     @extend .column;
-    justify-content: center;
-    align-items: center;
+    justify-content: baseline;
     box-shadow: 5px 5px 5px $light-color-primary;
     h3{
         color:$dark-color-secondary;
@@ -44,9 +43,26 @@
 .info{
     width: 100%;
     @extend .row;
-    justify-content: space-around;
+    margin-top: 15px;
+    justify-content: baseline;
+    gap:15px;
     align-items: center;
-    padding: 10px 50px !important;    
+    padding: 10px 20px !important;  
+    div{
+        @extend .column;
+        p{
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+        time{
+            font-size: 14px;
+            font-weight: 400;
+        }
+    }
+}
+.tagContainer{
+    padding-left: 15px;
 }
 .image{
     width: 100% !important;
@@ -55,4 +71,17 @@
     @extend .column;
     justify-content: center;
     align-items: center;
+}
+.infoContainer{
+    @extend .row;
+    justify-content: space-between;
+    align-items: center;
+    span{
+        margin-top: 16px;
+        @extend .row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-right: 25px;
+    }
 }
