@@ -1,0 +1,32 @@
+@import "../../../styles/globals.scss";
+.footer {
+    @extend .column;
+    margin-top: 25px;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+    padding: 35px;
+    background-color: $light-color-ternary;
+    .name,a{
+        color:$dark-color-primary;
+        font-weight: 600;
+        font-size: 20px;
+    }
+}
+.footer.dark{
+    background-color: $dark-color-secondary;
+    color:white;
+    a{
+        color: white;
+    }
+}
+.footer-logo {
+    height: 80px;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.mailicon {
+    height: 25px;
+    width: 25px;
+}

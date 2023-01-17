@@ -61,14 +61,7 @@ function NavLinks({ darkMode, pathname }: INavLinks) {
           Blogs
         </Link>
       </li>
-      <li>
-        <Link
-          href={`/myblogs`}
-          className={pathname === "/myblogs" ? styles.active : ""}
-        >
-          My Blogs!
-        </Link>
-      </li>
+
       <li>
         <Link
           className={pathname === "/createblog" ? styles.active : ""}

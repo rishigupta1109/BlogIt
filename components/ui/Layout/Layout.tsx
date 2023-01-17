@@ -3,6 +3,7 @@ import styles from "./Layout.module.scss";
 import Navbar from "../Navbar/Navbar";
 import { clsx } from "clsx";
 import { GlobalContext } from "../../../store/GlobalContext";
+import Footer from "../Footer/Footer";
 type Props = {
   children?: React.ReactElement;
 };
@@ -15,6 +16,7 @@ function Layout({ children }: Props) {
     >
       <Navbar />
       {!showMobileMenu && children}
+      <Footer />
     </div>
   );
 }
