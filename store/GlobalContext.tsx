@@ -7,6 +7,8 @@ export const GlobalContext = createContext({
   setMobileView: (value: boolean) => {},
   showMobileMenu: false,
   setShowMobileMenu: (value: boolean) => {},
+  loading: false,
+  setLoading: (value: boolean) => {},
 });
 
 export function GlobalContextProvider({
@@ -15,12 +17,15 @@ export function GlobalContextProvider({
   children: React.ReactElement;
 }) {
   const [darkMode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [mobileView, setMobileView] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
   return (
     <GlobalContext.Provider
       value={{
+        loading,
+        setLoading,
         darkMode,
         setDarkMode,
         mobileView,

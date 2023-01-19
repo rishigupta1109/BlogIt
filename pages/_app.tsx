@@ -5,6 +5,7 @@ import Layout from "../components/ui/Layout/Layout";
 import Head from "next/head";
 import { GlobalContextProvider } from "../store/GlobalContext";
 import localFont from "@next/font/local";
+import AlertContextProvider from "../store/AlertContext";
 
 // Font files can be colocated inside of `pages`
 const myFont = localFont({
@@ -36,7 +37,9 @@ export default function App({ Component, pageProps }: AppProps) {
     <main className={myFont.className}>
       <GlobalContextProvider>
         <Layout>
-          <Component {...pageProps} />
+          <AlertContextProvider>
+            <Component {...pageProps} />
+          </AlertContextProvider>
         </Layout>
       </GlobalContextProvider>
     </main>
