@@ -8,13 +8,25 @@
     justify-content: space-between;
     align-items: center;
     font-size: 15px;
-    input{
-        font-size: 15px;
-        padding: 10px 20px;
-        outline: none;
-        border-radius: 3px;
-        border: none;
-        background-color: $light-color-ternary;
-        box-shadow: 2px 2px 2px $light-color-primary;
+    div{
+        @extend .column;
+        justify-content: space-between;
+        align-items: baseline;
+        position: relative;
+        input{
+            font-size: 15px;
+            padding: 10px 20px;
+            outline: none;
+            border-radius: 3px;
+            border: none;
+            background-color: $light-color-ternary;
+            box-shadow: 2px 2px 2px $light-color-primary;
+        }
+        .error{
+            position: absolute;
+            top:32px;
+            color: red;
+            font-size: 12px;
+        }
     }
 }

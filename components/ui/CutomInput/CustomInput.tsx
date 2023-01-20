@@ -6,7 +6,8 @@ type Props = {
   value: string | number;
   changeHandler: (e: any) => void;
   name: string;
-  required: boolean;
+  error?: boolean;
+  errorText?: string;
 };
 
 export default function CustomInput({
@@ -15,18 +16,22 @@ export default function CustomInput({
   value,
   changeHandler,
   name,
-  required,
+  error = false,
+  errorText,
 }: Props) {
   return (
     <div className={styles.container}>
       <label>{label}</label>
-      <input
-        type={type}
-        value={value}
-        onChange={changeHandler}
-        required={required}
-        name={name}
-      />
+      <div>
+        <input
+          type={type}
+          value={value}
+          onChange={changeHandler}
+          name={name}
+          style={{ border: error ? "1px solid red" : "" }}
+        />
+        {error && <p className={styles.error}>{errorText}</p>}
+      </div>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import Head from "next/head";
 import { GlobalContextProvider } from "../store/GlobalContext";
 import localFont from "@next/font/local";
 import AlertContextProvider from "../store/AlertContext";
+import { SessionProvider } from "next-auth/react";
 
 // Font files can be colocated inside of `pages`
 const myFont = localFont({
@@ -35,13 +36,15 @@ const myFont = localFont({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <main className={myFont.className}>
-      <GlobalContextProvider>
-        <Layout>
-          <AlertContextProvider>
-            <Component {...pageProps} />
-          </AlertContextProvider>
-        </Layout>
-      </GlobalContextProvider>
+      <SessionProvider session={pageProps.session}>
+        <GlobalContextProvider>
+          <Layout>
+            <AlertContextProvider>
+              <Component {...pageProps} />
+            </AlertContextProvider>
+          </Layout>
+        </GlobalContextProvider>
+      </SessionProvider>
     </main>
   );
 }

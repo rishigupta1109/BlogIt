@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next/types";
-import User from "../../models/userModel";
-import { hashPassword } from "./../../utils/helper";
-import connectMongo from "./../../utils/dbConnect";
+import User from "../../../models/userModel";
+import { hashPassword } from "../../../utils/helper";
+import connectMongo from "../../../utils/dbConnect";
 
 export default async function handler(
   req: NextApiRequest,

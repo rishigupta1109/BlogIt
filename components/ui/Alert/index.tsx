@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Alert.module.scss";
 import CustomButton from "./../CustomButton/CustomButton";
-
+import closeButton from "../../../public/icons/icons8-close.svg";
 export interface IAlertProps {
   id: string;
   message: string;
@@ -13,11 +13,11 @@ export interface IAlertProps {
 function getBgColor(type: string) {
   switch (type) {
     case "success":
-      return "lightgreen";
+      return "#4BB543";
     case "error":
       return "#e46b71";
     case "warning":
-      return "lightyellow";
+      return "#ffcc00";
     case "info":
       return "lightblue";
     default:
@@ -36,17 +36,20 @@ const Alert: React.FC<IAlertProps> = ({
   return (
     <div className={styles.alert} style={{ backgroundColor: bgcolor }}>
       <div>
-        <p>{type}</p>
+        <p>{message}</p>
         {!autoClose && (
           <CustomButton
-            label="Close"
+            type="filled"
+            bg="transparent"
+            hoverbg="transparent"
+            boxShadow="0px 0px 0px 0px transparent"
+            src={closeButton}
             onClick={() => {
               onClose(id);
             }}
           ></CustomButton>
         )}
       </div>
-      <p>{message}</p>
     </div>
   );
 };

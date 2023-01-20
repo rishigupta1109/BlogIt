@@ -4,10 +4,13 @@ import { useRouter } from "next/router";
 import React, { useContext, useState } from "react";
 import { GlobalContext } from "../../../store/GlobalContext";
 import styles from "./UserDropDown.module.scss";
-
+import { signOut, useSession } from "next-auth/react";
 type Props = {};
 
 export default function UserDropDown({}: Props) {
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
+  const authenticated = status === "authenticated";
   const [show, setShow] = useState<boolean>(false);
   const { darkMode } = useContext(GlobalContext);
   console.log(show);
@@ -35,7 +38,7 @@ export default function UserDropDown({}: Props) {
       <div
         className={show ? styles.dropdown : clsx(styles.dropdown, styles.hide)}
       >
-        <span>Hi! Rishi</span>
+        <span>Hi! {session?.user?.name}</span>
         <span
           onClick={() => {
             router.push("/profile");
@@ -55,6 +58,7 @@ export default function UserDropDown({}: Props) {
         <span
           onClick={() => {
             //logout
+            signOut();
             setShow(!show);
           }}
         >

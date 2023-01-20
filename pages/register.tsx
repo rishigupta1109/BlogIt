@@ -13,24 +13,31 @@ export default function RegisterPage({}: Props) {
       type: "text",
       label: "Name",
       required: true,
+      errorText: "Please enter a valid name",
     },
     {
       name: "email",
       type: "email",
       label: "Email Id",
       required: true,
+      isEmail: true,
+      errorText: "Please enter a valid email",
     },
     {
       name: "password",
       type: "password",
       label: "Password",
       required: true,
+      errorText: "Password must be atleast 6 characters long",
+      minLength: 6,
     },
     {
       name: "cpassword",
       type: "password",
       label: "Confirm Password",
       required: true,
+      errorText: "Password must be atleast 6 characters long",
+      minLength: 6,
     },
   ];
   const { loading, setLoading } = useContext(GlobalContext);

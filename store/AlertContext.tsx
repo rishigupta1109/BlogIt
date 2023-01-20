@@ -114,7 +114,7 @@ const AlertContextProvider: React.FC<AlertContextProviderProps> = ({
     <AlertContext.Provider value={{ Message }}>
       <div
         style={{
-          position: "absolute",
+          position: "fixed",
           left: "50%",
           transform: "translateX(-50%)",
         }}

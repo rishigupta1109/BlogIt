@@ -12,6 +12,9 @@ type Props = {
     type: string;
     label: string;
     required: boolean;
+    errorText?: string;
+    minLength?: number;
+    isEmail?: boolean;
   }>;
   heading: string;
   link?: {
@@ -22,16 +25,51 @@ type Props = {
 
 export default function Form({ link, heading, submitHandler, fields }: Props) {
   let obj: any = {};
+  let errorObj: any = {};
   fields.forEach((field) => {
     obj[field.name] = "";
+    errorObj[field.name] = false;
     return;
   });
   const [inputs, setInputs] = useState<any>(obj);
+  const [errors, setErrors] = useState<any>(errorObj);
   const { darkMode } = useContext(GlobalContext);
 
   const inputChangeHandler = (e: any) => {
     setInputs((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
     console.log(inputs);
+  };
+  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let hasError = false;
+    for (const key in errors) {
+      let field = fields.find((field) => field.name === key);
+      if (inputs[key] === "" && field?.required) {
+        setErrors((prev: any) => ({ ...prev, [key]: true }));
+        hasError = true;
+      } else {
+        setErrors((prev: any) => ({ ...prev, [key]: false }));
+      }
+      if (field?.isEmail) {
+        const emailRegex = new RegExp(
+          "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$"
+        );
+        if (!emailRegex.test(inputs[key])) {
+          setErrors((prev: any) => ({ ...prev, [key]: true }));
+          hasError = true;
+        }
+      }
+      if (field?.minLength && inputs[key].length < field?.minLength) {
+        setErrors((prev: any) => ({ ...prev, [key]: true }));
+        hasError = true;
+      } else if (field?.minLength) {
+        setErrors((prev: any) => ({ ...prev, [key]: false }));
+      }
+    }
+    if (hasError) {
+      return;
+    }
+    submitHandler(inputs);
   };
   return (
     <div className={darkMode ? clsx(styles.form, styles.dark) : styles.form}>
@@ -44,10 +82,7 @@ export default function Form({ link, heading, submitHandler, fields }: Props) {
           }`,
         }}
         className={darkMode ? styles.dark : ""}
-        onSubmit={(e) => {
-          e.preventDefault();
-          submitHandler(inputs);
-        }}
+        onSubmit={handleSubmitForm}
       >
         <h1>{heading}</h1>
         {fields.map((field) => {
@@ -58,7 +93,8 @@ export default function Form({ link, heading, submitHandler, fields }: Props) {
               type={field.type}
               label={field.label}
               changeHandler={inputChangeHandler}
-              required={field.required}
+              error={errors[field.name]}
+              errorText={field.errorText}
             />
           );
         })}

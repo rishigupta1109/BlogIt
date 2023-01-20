@@ -8,6 +8,7 @@ import Logo from "../logo/Logo";
 import ModeToggle from "../ModeToggleButton/ModeToggle";
 import UserDropDown from "../UserDropDown/UserDropDown";
 import styles from "./Navbar.module.scss";
+import { useSession, signOut } from "next-auth/react";
 type Props = {};
 
 export default function Navbar({}: Props) {
@@ -46,49 +47,54 @@ interface INavLinks {
   pathname: string;
 }
 function NavLinks({ darkMode, pathname }: INavLinks) {
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
+  const authenticated = status === "authenticated";
+
   return (
     <ul>
       <li>
         <Link href={`/`}>
           <Logo transparent={true} black={!darkMode} />
         </Link>
-      </li>
-      <li>
+
         <Link
           href={`/blogs`}
           className={pathname === "/blogs" ? styles.active : ""}
         >
           Blogs
         </Link>
+        {authenticated && !loading && (
+          <Link
+            className={pathname === "/createblog" ? styles.active : ""}
+            href={`/createblog`}
+          >
+            Create Blog
+          </Link>
+        )}
       </li>
 
       <li>
-        <Link
-          className={pathname === "/createblog" ? styles.active : ""}
-          href={`/createblog`}
-        >
-          Create Blog
-        </Link>
-      </li>
-      <li>
-        <CustomButton
-          hoverbg={
-            darkMode
-              ? "var(--dark-color-secondary)"
-              : "var(--dark-color-secondary)"
-          }
-          type="filled"
-          bg={
-            darkMode
-              ? "var(--dark-color-ternary)"
-              : "var(--light-color-primary)"
-          }
-          textColor="white"
-          corner="6px"
-          label="Sign in"
-          link={`/login`}
-        />
-        <UserDropDown />
+        {!authenticated && !loading && (
+          <CustomButton
+            hoverbg={
+              darkMode
+                ? "var(--dark-color-secondary)"
+                : "var(--dark-color-secondary)"
+            }
+            type="filled"
+            bg={
+              darkMode
+                ? "var(--dark-color-ternary)"
+                : "var(--light-color-primary)"
+            }
+            textColor="white"
+            corner="6px"
+            label="Sign in"
+            link={`/login`}
+          />
+        )}
+        {authenticated && !loading && <UserDropDown />}
         <ModeToggle />
       </li>
     </ul>
@@ -99,6 +105,9 @@ interface IMobileNavLinks {
   pathname: string;
 }
 function MobileNavLinks({ darkMode, pathname }: IMobileNavLinks) {
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
+  const authenticated = status === "authenticated";
   const { showMobileMenu, setShowMobileMenu } = useContext(GlobalContext);
   let Line1 = useRef<HTMLDivElement>(null);
   let Line2 = useRef<HTMLDivElement>(null);
@@ -156,73 +165,86 @@ function MobileNavLinks({ darkMode, pathname }: IMobileNavLinks) {
               Blogs
             </Link>
           </li>
-          <li>
-            <Link
-              onClick={menuHandler}
-              href={`/myblogs`}
-              className={pathname === "/myblogs" ? styles.active : ""}
-            >
-              My Blogs!
-            </Link>
-          </li>
-          <li>
-            <Link
-              onClick={menuHandler}
-              href={`/profile`}
-              className={pathname === "/profile" ? styles.active : ""}
-            >
-              My Profile
-            </Link>
-          </li>
-          <li>
-            <Link
-              onClick={menuHandler}
-              className={pathname === "/createblog" ? styles.active : ""}
-              href={`/createblog`}
-            >
-              Create Blog
-            </Link>
-          </li>
-          <li>
-            <CustomButton
-              onClick={menuHandler}
-              hoverbg={
-                darkMode
-                  ? "var(--dark-color-secondary)"
-                  : "var(--dark-color-secondary)"
-              }
-              type="filled"
-              bg={
-                darkMode
-                  ? "var(--dark-color-ternary)"
-                  : "var(--light-color-primary)"
-              }
-              textColor="white"
-              corner="6px"
-              label="Sign in"
-              link={`/login`}
-            />
-          </li>
-          <li>
-            <CustomButton
-              onClick={menuHandler}
-              hoverbg={
-                darkMode
-                  ? "var(--dark-color-secondary)"
-                  : "var(--dark-color-secondary)"
-              }
-              type="filled"
-              bg={
-                darkMode
-                  ? "var(--dark-color-ternary)"
-                  : "var(--light-color-primary)"
-              }
-              textColor="white"
-              corner="6px"
-              border="none"
-              label="Logout"
-            />
-          </li>
+          {authenticated && !loading && (
+            <li>
+              <Link
+                onClick={menuHandler}
+                href={`/myblogs`}
+                className={pathname === "/myblogs" ? styles.active : ""}
+              >
+                My Blogs!
+              </Link>
+            </li>
+          )}
+          {authenticated && !loading && (
+            <li>
+              <Link
+                onClick={menuHandler}
+                href={`/profile`}
+                className={pathname === "/profile" ? styles.active : ""}
+              >
+                My Profile
+              </Link>
+            </li>
+          )}
+          {authenticated && !loading && (
+            <li>
+              <Link
+                onClick={menuHandler}
+                className={pathname === "/createblog" ? styles.active : ""}
+                href={`/createblog`}
+              >
+                Create Blog
+              </Link>
+            </li>
+          )}
+          {!authenticated && !loading && (
+            <li>
+              <CustomButton
+                onClick={menuHandler}
+                hoverbg={
+                  darkMode
+                    ? "var(--dark-color-secondary)"
+                    : "var(--dark-color-secondary)"
+                }
+                type="filled"
+                bg={
+                  darkMode
+                    ? "var(--dark-color-ternary)"
+                    : "var(--light-color-primary)"
+                }
+                textColor="white"
+                corner="6px"
+                label="Sign in"
+                link={`/login`}
+              />
+            </li>
+          )}
+          {authenticated && !loading && (
+            <li>
+              <CustomButton
+                onClick={() => {
+                  menuHandler();
+                  signOut();
+                }}
+                hoverbg={
+                  darkMode
+                    ? "var(--dark-color-secondary)"
+                    : "var(--dark-color-secondary)"
+                }
+                type="filled"
+                bg={
+                  darkMode
+                    ? "var(--dark-color-ternary)"
+                    : "var(--light-color-primary)"
+                }
+                textColor="white"
+                corner="6px"
+                border="none"
+                label="Logout"
+              />
+            </li>
+          )}
           <li>
             <ModeToggle />
           </li>

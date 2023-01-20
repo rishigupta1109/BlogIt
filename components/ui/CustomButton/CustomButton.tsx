@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { text } from "stream/consumers";
 import styles from "./CustomButton.module.scss";
+import Image from "next/image";
 type Props = {
   id?: string;
   label?: string;
@@ -15,6 +16,8 @@ type Props = {
   children?: React.ReactElement;
   link?: string;
   hoverTextColor?: string;
+  src?: any;
+  boxShadow?: string;
 };
 
 export default function CustomButton({
@@ -30,6 +33,8 @@ export default function CustomButton({
   border,
   link,
   hoverTextColor = "white",
+  src,
+  boxShadow,
 }: Props) {
   if (link) {
     return (
@@ -47,6 +52,7 @@ export default function CustomButton({
         href={link}
         className={styles.button}
         style={{
+          boxShadow: boxShadow,
           borderRadius: corner,
           backgroundColor: bg && type === "filled" ? bg : "white",
           color: textColor ? textColor : "black",
@@ -55,6 +61,8 @@ export default function CustomButton({
         }}
       >
         {label}
+        {children}
+        {src && <Image alt="image" src={src} height={25} width={25} />}
       </Link>
     );
   }
@@ -75,6 +83,7 @@ export default function CustomButton({
       className={styles.button}
       onClick={onClick}
       style={{
+        boxShadow: boxShadow,
         borderRadius: corner,
         backgroundColor: bg && type === "filled" ? bg : "white",
         color: textColor ? textColor : "black",
@@ -84,6 +93,7 @@ export default function CustomButton({
     >
       {label}
       {children}
+      {src && <Image alt="image" src={src} height={25} width={25} />}
     </button>
   );
 }

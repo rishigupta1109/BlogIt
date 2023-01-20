@@ -1,6 +1,7 @@
 @import '../../../styles/globals';
 
 .navbar{
+    padding: 0 25px;
     a{
         text-decoration: none;
     }
@@ -12,12 +13,12 @@
         height: 10vh;
         @extend .row;
         align-items: center;
-        justify-content: space-around;
+        justify-content: space-between;
         list-style: none;
         font-size: 18px;
         li{
             @extend .row;
-            gap:25px;
+            gap:50px;
             align-items: center;
             justify-content: space-between;
         }
@@ -68,6 +69,7 @@
 
 @media screen and (max-width:900px){
     .navbar{
+        padding-left: 0;
         position: sticky;
         top:0;
         left:0;
@@ -94,6 +96,9 @@
                 
         }
     }
+        .linkContainer{
+                padding: 0 25px;
+        }
     .linkContainer.dark+ul{
         background-color: black;
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 import { useContext } from "react";
 import BlogList from "../../components/blog/bloglist/BlogList";
@@ -6,6 +6,8 @@ import { GlobalContext } from "../../store/GlobalContext";
 import styles from "../../styles/Home.module.scss";
 import pic from "../../public/images/istockphoto-164451886-612x612.jpg";
 import { IBlog } from "../../utils/interfaces";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const featuredBlogs = [
   {
@@ -52,6 +54,15 @@ const featuredBlogs = [
 
 export default function MyBlogsPage() {
   const [myblogs, setMyBlogs] = useState<Array<IBlog>>(featuredBlogs);
+  const { data: session, status } = useSession();
+  const router = useRouter();
+  const loading = status === "loading";
+  const authenticated = status === "authenticated";
+  useEffect(() => {
+    if (!loading && !authenticated) {
+      router.push("/login");
+    }
+  }, [session]);
   let classname = styles.homePage;
   const { darkMode } = useContext(GlobalContext);
   if (darkMode) classname = clsx(styles.homePage, styles.dark);
