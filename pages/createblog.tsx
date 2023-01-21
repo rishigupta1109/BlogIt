@@ -49,8 +49,14 @@ export default function createblogPage({}: Props) {
     try {
       const res = await createBlog(data);
       console.log(res);
+      if (res.status == 201) {
+        Message().success(res.message);
+      } else {
+        Message().error(res.message);
+      }
     } catch (err) {
       console.log(err);
+      Message().error(err);
     }
   };
   return (
