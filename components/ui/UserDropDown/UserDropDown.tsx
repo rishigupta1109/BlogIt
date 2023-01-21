@@ -38,7 +38,7 @@ export default function UserDropDown({}: Props) {
       <div
         className={show ? styles.dropdown : clsx(styles.dropdown, styles.hide)}
       >
-        <span>Hi! {session?.user?.name}</span>
+        <span>Hi! {session?.user?.name?.name}</span>
         <span
           onClick={() => {
             router.push("/profile");

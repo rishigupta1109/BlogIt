@@ -9,6 +9,7 @@
   padding: 15px;
   margin: 10px;
   color: white;
+  animation: slidedown 500ms ease forwards;
   div{
     width: 100%;
     display: flex;
@@ -35,3 +36,13 @@
     color: black;
   }
 }
+@keyframes slidedown {
+    0%{
+      transform: translateY(-25px);
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+      transform: translateY(0);
+    }
+} 

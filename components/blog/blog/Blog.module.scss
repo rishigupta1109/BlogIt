@@ -30,3 +30,34 @@
 .container.dark{
     color:$dark-color-primary;
 }
+.info {
+    width: 100%;
+    @extend .row;
+    margin-top: 15px;
+    justify-content: baseline;
+    gap: 15px;
+    align-items: center;
+
+    div {
+        @extend .column;
+
+        p {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        time {
+            font-size: 14px;
+            font-weight: 400;
+        }
+    }
+}
+@media screen and (max-width:700px) {
+    .title{
+        font-size: 2rem !important;
+    }
+    .content{
+        padding: 1rem 2rem !important;
+    }
+}

@@ -3,3 +3,9 @@
 .blogContainer{
     padding: 10vh 10vw;
 }
+
+@media screen and (max-width:400px) {
+    .blogContainer{
+        padding: 25px 0;
+    }
+}

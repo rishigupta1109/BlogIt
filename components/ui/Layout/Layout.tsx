@@ -16,7 +16,7 @@ function Layout({ children }: Props) {
     >
       <Navbar />
       {!showMobileMenu && children}
-      <Footer />
+      {!showMobileMenu && <Footer />}
     </div>
   );
 }

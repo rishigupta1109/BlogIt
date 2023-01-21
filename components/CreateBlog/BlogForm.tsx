@@ -1,17 +1,25 @@
 import clsx from "clsx";
-import React, { ButtonHTMLAttributes, useContext, useState } from "react";
+import React, {
+  ButtonHTMLAttributes,
+  useContext,
+  useRef,
+  useState,
+} from "react";
 import { GlobalContext } from "../../store/GlobalContext";
 import { IBlog } from "../../utils/interfaces";
 import CustomButton from "../ui/CustomButton/CustomButton";
 import styles from "./BlogForm.module.scss";
 import Editor, { EditorContentChanged } from "./Editor";
+import { AlertContext } from "../../store/AlertContext";
 type Props = {
   setFormData: React.Dispatch<IBlog>;
   formData: IBlog;
+  onSubmit: (e: any) => void;
 };
 
-export default function BlogForm({ setFormData, formData }: Props) {
+export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
   const { darkMode } = useContext(GlobalContext);
+  const { Message } = useContext(AlertContext);
   const onEditorContentChanged = (content: EditorContentChanged) => {
     setFormData({ ...formData, body: content.markdown });
   };
@@ -19,18 +27,40 @@ export default function BlogForm({ setFormData, formData }: Props) {
     console.log(e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [selectedFile, setSelectedFile] = useState<any>(null);
   return (
-    <form className={!darkMode ? styles.form : clsx(styles.form, styles.dark)}>
+    <form
+      className={!darkMode ? styles.form : clsx(styles.form, styles.dark)}
+      onSubmit={onSubmit}
+    >
       <div className={styles.inputContainer}>
-        <input name="image" type={"file"} className={styles.fileInput} />
+        <input
+          ref={inputRef}
+          name="image"
+          type={"file"}
+          accept="image/*"
+          className={styles.fileInput}
+          onChange={({ target }) => {
+            if (target.files) {
+              let file = target.files[0];
+              setSelectedFile(file);
+              setFormData({ ...formData, image: file });
+              Message().success("Cover image added");
+            }
+          }}
+        />
         <CustomButton
           type="outlined"
           border="none"
           corner="6px"
           textColor="black"
           hoverbg="var(--dark-color-ternary)"
-          label="Add a cover image"
+          label={selectedFile ? "Change cover photo" : "Add a cover photo"}
+          onClick={(e) => {
+            e.preventDefault();
+            inputRef.current?.click();
+          }}
         />
         <input
           type={"text"}
@@ -39,6 +69,7 @@ export default function BlogForm({ setFormData, formData }: Props) {
           onChange={changeHandler}
           name="title"
           className={styles.headingInput}
+          required={true}
         />
         <input
           type={"text"}

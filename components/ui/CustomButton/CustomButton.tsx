@@ -7,7 +7,7 @@ type Props = {
   id?: string;
   label?: string;
   border?: string;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
   corner?: string;
   type?: "filled" | "outlined";
   bg?: string;

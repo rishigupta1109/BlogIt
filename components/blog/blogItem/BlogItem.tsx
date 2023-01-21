@@ -23,12 +23,14 @@ export default function BlogItem({ data }: Props) {
   const handleOpenBlog = () => {
     router.push(`/blogs/${id}`);
   };
+  let previewImage: string =
+    typeof image !== "string" ? URL.createObjectURL(image) : image;
   const imageURL =
     "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
   return (
     <div className={classname} onClick={handleOpenBlog}>
       <Image
-        src={image}
+        src={previewImage}
         alt={title}
         className={styles.image}
         height={350}
@@ -43,7 +45,7 @@ export default function BlogItem({ data }: Props) {
           </div>
         </div>
         <span>
-          <Image src={heartIcon} alt={"heart"} height={30} width={30} />4
+          <Image src={heartIcon} alt={"heart"} height={20} width={20} />4
         </span>
       </div>
       <div className={styles.textContainer}>
