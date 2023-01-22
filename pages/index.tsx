@@ -5,6 +5,8 @@ import { GlobalContext } from "../store/GlobalContext";
 import styles from "../styles/Home.module.scss";
 import pic from "../public/images/istockphoto-164451886-612x612.jpg";
 import { IBlog } from "../utils/interfaces";
+import { GetServerSidePropsContext } from "next";
+import { server } from "./../utils/config";
 const FeaturedBlogs = [
   {
     id: Math.ceil(Math.random() * 100).toString(),
@@ -48,18 +50,33 @@ const FeaturedBlogs = [
   },
 ];
 
-export default function HomePage() {
+export default function HomePage({ blogs }) {
   let classname = styles.homePage;
-  const [featuredBlogs, setFeaturedBlogs] =
-    useState<Array<IBlog>>(FeaturedBlogs);
   const { darkMode } = useContext(GlobalContext);
   if (darkMode) classname = clsx(styles.homePage, styles.dark);
   return (
     <>
       <main className={classname}>
         <h1>Featured Blogs</h1>
-        <BlogList blogs={featuredBlogs} />
+        {blogs?.length > 0 ? <BlogList blogs={blogs} /> : <p>No blogs found</p>}
       </main>
     </>
   );
+}
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  let blogs = [];
+  try {
+    const response = await fetch(`${server}/api/feauturedblogs`);
+    console.log(response);
+    const data = await response.json();
+    blogs = data.blogs;
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+  return {
+    props: {
+      blogs,
+    }, // will be passed to the page component as props
+  };
 }

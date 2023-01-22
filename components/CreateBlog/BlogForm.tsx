@@ -29,6 +29,7 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
   };
   const inputRef = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<any>(null);
+  console.log({ body: formData?.body });
   return (
     <form
       className={!darkMode ? styles.form : clsx(styles.form, styles.dark)}
@@ -79,7 +80,7 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
           placeholder="Comma seperated tags"
           className={styles.tagsInput}
         />
-        <Editor value={formData?.body} onChange={onEditorContentChanged} />
+        <Editor value={formData.body} onChange={onEditorContentChanged} />
       </div>
       <div className={styles.actionButtons}>
         <CustomButton

@@ -28,6 +28,8 @@ export const authOptions = {
             name: user.name,
             id: user?._id,
             avatar: user?.avatar,
+            role: user?.role,
+            description: user?.description,
           },
           email: user.email,
         };

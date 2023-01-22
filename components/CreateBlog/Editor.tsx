@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import { markdownToHtml, htmlToMarkdown } from "../../utils/Parser";
 import dynamic from "next/dynamic";
@@ -32,7 +32,9 @@ export default function Editor(props: EditorProps) {
   const [value, setValue] = useState<string>(
     props.value ? markdownToHtml(props.value) : ""
   );
-
+  useEffect(() => {
+    if (props.value?.length === 0) setValue("");
+  }, [props.value]);
   const onChange = (content: string) => {
     setValue(content);
 

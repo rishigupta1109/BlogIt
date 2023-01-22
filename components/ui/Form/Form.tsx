@@ -15,6 +15,7 @@ type Props = {
     errorText?: string;
     minLength?: number;
     isEmail?: boolean;
+    defaultValue?: string;
   }>;
   heading: string;
   link?: {
@@ -27,6 +28,11 @@ export default function Form({ link, heading, submitHandler, fields }: Props) {
   let obj: any = {};
   let errorObj: any = {};
   fields.forEach((field) => {
+    if (field.defaultValue) {
+      obj[field.name] = field.defaultValue;
+      errorObj[field.name] = false;
+      return;
+    }
     obj[field.name] = "";
     errorObj[field.name] = false;
     return;
@@ -36,9 +42,17 @@ export default function Form({ link, heading, submitHandler, fields }: Props) {
   const { darkMode } = useContext(GlobalContext);
 
   const inputChangeHandler = (e: any) => {
+    if (e.target.name === "image") {
+      setInputs((prev: any) => ({
+        ...prev,
+        [e.target.name]: e.target.files[0],
+      }));
+      return;
+    }
     setInputs((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
-    console.log(inputs);
+    // console.log(inputs);
   };
+  // console.log(inputs);
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let hasError = false;

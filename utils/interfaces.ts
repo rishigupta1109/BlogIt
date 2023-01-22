@@ -1,5 +1,20 @@
-export interface IBlog {
+export interface IUser {
+  name: string;
+  email: string;
+  password?: string;
+  avatar?: string;
+  role?: string;
+  description?: string;
+}
+
+export interface Icomment {
   id: string;
+  text: string;
+  createdAt: Date;
+  user: IUser;
+}
+export interface IBlog {
+  _id: string;
   title: string;
   tags: string;
   image: string | File;
@@ -8,10 +23,12 @@ export interface IBlog {
   body: string;
   authorAvatar?: string;
   authorName: string;
+  likes?: number;
+  comments?: Array<Icomment>;
 }
 
 export const defaultBlog: IBlog = {
-  id: "",
+  _id: "",
   title: "",
   tags: "",
   image: "",

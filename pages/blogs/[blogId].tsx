@@ -1,22 +1,36 @@
 import React from "react";
 import Blog from "../../components/blog/blog/Blog";
 import styles from "../../styles/BlogPage.module.scss";
-type Props = {};
-const blog = {
-  id: Math.ceil(Math.random() * 100).toString(),
-  title: "The First IMO Shortlisted Problem from Bangladesh",
-  tags: "coding,study",
-  image:
-    "https://images.unsplash.com/photo-1673364982114-a1e07639bda3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80s",
-  author: "Rishi Gupta",
-  createdAt: new Date(),
-  body: "It’s an honor for me share that my problem got shortlisted for International Math Olympiad 2021 and now the problem is public.",
+import { GetServerSidePropsContext } from "next";
+import { server } from "../../utils/config";
+import { IBlog } from "../../utils/interfaces";
+import Back from "./../../components/ui/back/Back";
+type Props = {
+  blog: IBlog;
 };
-
-export default function BlogPage({}: Props) {
+export default function BlogPage({ blog }: Props) {
   return (
     <div className={styles.blogContainer}>
+      <Back />
       <Blog blog={blog} />
     </div>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const { blogId } = context.query;
+  let blog = {};
+  try {
+    const res = await fetch(`${server}/api/blog/${blogId}`);
+    const data = await res.json();
+    console.log(data);
+    if (res.status === 200) blog = data.blog;
+  } catch (err) {
+    console.log(err);
+  }
+  return {
+    props: {
+      blog,
+    },
+  };
 }

@@ -25,7 +25,7 @@ export default function CustomButton({
   label,
   onClick,
   corner,
-  type,
+  type = "filled",
   bg = "white",
   hoverbg,
   textColor,

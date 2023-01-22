@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import Image from "next/image";
 import React, { useContext, useEffect } from "react";
-import CustomButton from "../components/ui/CustomButton/CustomButton";
-import styles from "../styles/Profile.module.scss";
-import { GlobalContext } from "./../store/GlobalContext";
-import { useSession } from "next-auth/react";
+import CustomButton from "../../components/ui/CustomButton/CustomButton";
+import styles from "../../styles/Profile.module.scss";
+import { GlobalContext } from "../../store/GlobalContext";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { GetServerSidePropsContext } from "next";
 type Props = {};
 
 export default function ProfilePage({}: Props) {
@@ -19,8 +20,12 @@ export default function ProfilePage({}: Props) {
       router.push("/login");
     }
   }, [session]);
+  if (loading) return <div>Loading...</div>;
   const profileURL =
     "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
+
+  const { name, avatar, description, role, id } = session?.user?.name;
+
   return (
     <div
       className={
@@ -29,11 +34,12 @@ export default function ProfilePage({}: Props) {
     >
       <div className={styles.header}></div>
       <div className={styles.profile}>
-        <Image src={profileURL} alt="profile" height={150} width={150} />
-        <h1>Rishi</h1>
-        <h3>Full Stack Developer</h3>
-        <p>Description</p>
+        <Image src={`/user/${avatar}`} alt="profile" height={150} width={150} />
+        {name && <h1>{name}</h1>}
+        {role && <h3>{role}</h3>}
+        {<p>{description}</p>}
         <CustomButton
+          link="/profile/edit"
           label="Edit Details"
           corner="6px"
           textColor="white"
@@ -50,4 +56,20 @@ export default function ProfilePage({}: Props) {
       </div>
     </div>
   );
+}
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession({ req: context.req });
+  console.log(session);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    }, // will be passed to the page component as props
+  };
 }

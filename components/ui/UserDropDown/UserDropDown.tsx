@@ -15,8 +15,9 @@ export default function UserDropDown({}: Props) {
   const { darkMode } = useContext(GlobalContext);
   console.log(show);
   const router = useRouter();
-  const profileURL =
-    "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
+  const profileURL = session?.user?.name?.avatar
+    ? "/user/" + session?.user?.name?.avatar
+    : "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
   return (
     <div
       className={

@@ -6,10 +6,11 @@ import Viewer from "../components/CreateBlog/Viewer";
 import { GlobalContext } from "../store/GlobalContext";
 import styles from "../styles/CreateBlog.module.scss";
 import { defaultBlog, IBlog } from "../utils/interfaces";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { createBlog } from "../utils/services";
 import { AlertContext } from "../store/AlertContext";
+import { GetServerSidePropsContext } from "next";
 type Props = {};
 
 export default function createblogPage({}: Props) {
@@ -51,8 +52,15 @@ export default function createblogPage({}: Props) {
       console.log(res);
       if (res.status == 201) {
         Message().success(res.message);
+        setFormData({
+          ...defaultBlog,
+          body: "",
+          author: session?.user?.name?.id,
+          authorName: session?.user?.name?.name,
+          authorAvatar: session?.user?.name.avatar,
+        });
       } else {
-        Message().error(res.message);
+        if (res.message) Message().error(res.message);
       }
     } catch (err) {
       console.log(err);
@@ -93,4 +101,22 @@ export default function createblogPage({}: Props) {
       )}
     </div>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession({ req: context.req });
+  console.log(session);
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    }, // will be passed to the page component as props
+  };
 }

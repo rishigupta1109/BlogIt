@@ -3,6 +3,7 @@ import Form from "../components/ui/Form/Form";
 import { AlertContext } from "../store/AlertContext";
 import { GlobalContext } from "../store/GlobalContext";
 import { signup } from "../utils/services";
+import { useRouter } from "next/router";
 
 type Props = {};
 
@@ -40,6 +41,7 @@ export default function RegisterPage({}: Props) {
       minLength: 6,
     },
   ];
+  const router = useRouter();
   const { loading, setLoading } = useContext(GlobalContext);
   const { Message } = useContext(AlertContext);
   const registerHandler = async (values: any) => {
@@ -57,6 +59,7 @@ export default function RegisterPage({}: Props) {
       console.log(data);
       if (data.status === 201) {
         Message().success("Account created successfully");
+        router.push("/login");
       } else if (data?.err?.code === 11000) {
         Message().warning("Email already exists");
       } else {

@@ -1,6 +1,7 @@
 @import './globals.scss';
 
 .homePage{
+    min-height: 55vh;
     @extend .column;
     justify-content: baseline;
     align-items: center;

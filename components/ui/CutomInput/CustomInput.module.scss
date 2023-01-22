@@ -8,11 +8,23 @@
     justify-content: space-between;
     align-items: center;
     font-size: 15px;
-    div{
+    .subContainer{
         @extend .column;
         justify-content: space-between;
         align-items: baseline;
         position: relative;
+        .rowContainer {
+            display: flex;
+            flex-direction: row !important;
+            justify-content: space-between;
+            align-items: center;
+            img{
+                height:45px;
+                width:45px;
+                border-radius: 100%;
+                margin: 0 10px;
+            }
+        }
         input{
             font-size: 15px;
             padding: 10px 20px;
