@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { createBlog } from "../utils/services";
 import { AlertContext } from "../store/AlertContext";
 import { GetServerSidePropsContext } from "next";
+import Loader from "../components/ui/Loader/Loader";
 type Props = {};
 
 export default function createblogPage({}: Props) {
@@ -21,6 +22,7 @@ export default function createblogPage({}: Props) {
   const router = useRouter();
   const loading = status === "loading";
   const authenticated = status === "authenticated";
+
   const { Message } = useContext(AlertContext);
   useEffect(() => {
     if (!loading && !authenticated) {
@@ -36,7 +38,7 @@ export default function createblogPage({}: Props) {
     }
     console.log(user);
   }, [user]);
-  if (!user) return <div>Loading..</div>;
+  if (loading || !user) return <Loader />;
   const { _id, name, avatar } = user;
   const submitHandler = async (e: any) => {
     e.preventDefault();

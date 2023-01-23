@@ -7,6 +7,7 @@ import { GlobalContext } from "../../store/GlobalContext";
 import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
+import Loader from "../../components/ui/Loader/Loader";
 type Props = {};
 
 export default function ProfilePage({}: Props) {
@@ -20,7 +21,7 @@ export default function ProfilePage({}: Props) {
       router.push("/login");
     }
   }, [session]);
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
   const { user } = useContext(GlobalContext);
   console.log(user);
   const profileURL =

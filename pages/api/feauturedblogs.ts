@@ -13,7 +13,7 @@ export default async function handler(
     const conn = await connectMongo();
     const exists = conn.connection.db.collection("blogs");
     // console.log(exists);
-    const blogs = await Blogs.find().sort({ likes: -1 }).limit(6);
+    const blogs = await Blogs.find().sort({ views: -1 }).limit(6);
     console.log(blogs);
     res.status(200).json({ message: "successful", blogs });
   } catch (error) {

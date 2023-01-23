@@ -40,6 +40,10 @@ const BlogSchema = new Schema<IBlog>({
   comments: {
     type: Array,
   },
+  views: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const BlogModel = () => mongoose.model<IBlog>("Blogs", BlogSchema);

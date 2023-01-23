@@ -26,6 +26,7 @@ export interface IBlog {
   authorName: string;
   likes?: number;
   comments?: Array<Icomment>;
+  views?: number;
 }
 
 export const defaultBlog: IBlog = {

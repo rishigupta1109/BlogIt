@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import { server } from "../../utils/config";
 import CustomButton from "../../components/ui/CustomButton/CustomButton";
+import Loader from "../../components/ui/Loader/Loader";
 
 export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
@@ -18,6 +19,7 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
   const router = useRouter();
   const loading = status === "loading";
   const authenticated = status === "authenticated";
+  if (loading) return <Loader />;
   useEffect(() => {
     if (!loading && !authenticated) {
       router.push("/login");

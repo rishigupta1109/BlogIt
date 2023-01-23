@@ -7,7 +7,7 @@ import { IBlog } from "../../../utils/interfaces";
 import Viewer from "../../CreateBlog/Viewer";
 import Tags from "../../ui/Tags/Tags";
 import styles from "./BlogItem.module.scss";
-import heartIcon from "../../../public/images/heart.svg";
+import viewIcon from "../../../public/images/view.svg";
 type Props = {
   data: IBlog;
 };
@@ -21,7 +21,7 @@ export default function BlogItem({ data }: Props) {
     authorName,
     createdAt,
     authorAvatar,
-    likes,
+    views,
   } = data;
   console.log(data);
   const tags = data.tags.split(",").map((tag) => tag.trim());
@@ -67,8 +67,8 @@ export default function BlogItem({ data }: Props) {
           </div>
         </div>
         <span>
-          <Image src={heartIcon} alt={"heart"} height={20} width={20} />
-          {likes}
+          <Image src={viewIcon} alt={"view"} height={20} width={20} />
+          {views}
         </span>
       </div>
       <div className={styles.textContainer}>

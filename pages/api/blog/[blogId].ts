@@ -12,7 +12,17 @@ export default async function handler(
     try {
       await connectMongo();
       const blog = await Blogs.findOne({ _id: blogId });
-      console.log(blog);
+      if (!blog) return res.status(404).json({ message: "Blog not found" });
+      console.log(typeof blog["views"], blog.views);
+      if (blog.views === undefined) blog.views = 0;
+      const updateBlog = await Blogs.findOneAndUpdate(
+        { _id: blogId },
+        { views: blog?.views + 1 },
+        {
+          new: true,
+        }
+      );
+      console.log({ updateBlog });
       return res.status(200).json({ message: "successful", blog });
     } catch (error) {
       return res.status(500).json({ message: "something went wrong", error });

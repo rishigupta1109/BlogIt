@@ -4,6 +4,8 @@ import { AlertContext } from "../store/AlertContext";
 import { GlobalContext } from "../store/GlobalContext";
 import { signup } from "../utils/services";
 import { useRouter } from "next/router";
+import { getSession } from "next-auth/react";
+import { GetServerSidePropsContext } from "next";
 
 type Props = {};
 
@@ -42,7 +44,7 @@ export default function RegisterPage({}: Props) {
     },
   ];
   const router = useRouter();
-  const { loading, setLoading } = useContext(GlobalContext);
+  const { setLoading } = useContext(GlobalContext);
   const { Message } = useContext(AlertContext);
   const registerHandler = async (values: any) => {
     const { name, email, password, cpassword } = values;
@@ -83,4 +85,22 @@ export default function RegisterPage({}: Props) {
       />
     </div>
   );
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const session = await getSession({ req: context.req });
+  console.log(session);
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {
+      session,
+    }, // will be passed to the page component as props
+  };
 }

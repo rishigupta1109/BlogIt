@@ -8,6 +8,7 @@ import {
 import { GlobalContext } from "../../store/GlobalContext";
 import { GetServerSidePropsContext } from "next";
 import { AlertContext } from "./../../store/AlertContext";
+import Loader from "../../components/ui/Loader/Loader";
 
 type Props = {};
 
@@ -16,7 +17,7 @@ export default function EditPage({}: Props) {
   const { user, setUser } = useContext(GlobalContext);
   const { Message } = useContext(AlertContext);
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
   if (!user) return <div>Loading...</div>;
   const submitHandler = async (values: any) => {

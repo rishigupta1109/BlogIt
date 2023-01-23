@@ -1,0 +1,15 @@
+@import "../../../styles/globals.scss";
+
+.container{
+    z-index: 300;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    @extend .row;
+    justify-content: center;
+    align-items: center;
+    background-color: #eef1ff8f;
+    img{
+        border-radius: 100%;
+    }
+}
