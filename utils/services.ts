@@ -33,13 +33,19 @@ export const updateUserDetailsWithImage = async (
   return data;
 };
 export const updateUserDetailsWithoutImage = async (
-  formData: any,
+  formData: FormData,
   session: any
 ) => {
   const response = await fetch("/api/auth/update-details", {
     method: "PATCH",
-    body: JSON.stringify(formData),
+    body: formData,
   });
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};
+export const getUserData = async (id: string) => {
+  const response = await fetch(`/api/user/${id}`);
   const data = await response.json();
   data.status = response.status;
   return data;

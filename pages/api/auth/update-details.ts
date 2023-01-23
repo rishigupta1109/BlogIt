@@ -1,27 +1,69 @@
 import { GetServerSidePropsContext, NextApiRequest } from "next/types";
 import { NextApiResponse } from "next/types";
 import Users from "../../../models/userModel";
-import { readfile } from "../blog/create";
 import fs from "fs";
 import path from "path";
 import { getSession } from "next-auth/react";
-
+import connectMongo from "../../../utils/dbConnect";
+import formidable from "formidable";
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+export const readfile = async (
+  req: NextApiRequest,
+  saveLocally: boolean,
+  imageName: string
+) => {
+  let options: formidable.Options = {};
+  let name: string;
+  if (saveLocally) {
+    options.uploadDir = path.join(process.cwd(), `/public/user`);
+    options.filename = (name, ext, path, form) => {
+      name = Date.now().toString() + "_" + path.originalFilename;
+      imageName = name;
+      console.log("here", name);
+      return name;
+    };
+  }
+  const form = formidable(options);
+  return new Promise((resolve, reject) => {
+    form.parse(req, (err, fields, files) => {
+      if (err) reject(err);
+      if (saveLocally) fields.image = imageName;
+      resolve({ fields, files });
+    });
+  });
+};
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getSession({ req: req });
-  console.log(session);
-  console.log("here");
-  if (!session) {
-    res.status(401).json({ message: "not authenticated" });
+  let session;
+  try {
+    session = await getSession({ req: req });
+    if (!session) {
+      res.status(401).json({ message: "not authenticated" });
+    }
+  } catch (err) {
+    return res.status(500).json({ message: "something went wrong", err });
   }
-
+  // console.log(session);
+  // console.log("here");
+  console.log(req.method);
+  try {
+    const conn = await connectMongo();
+  } catch (err) {
+    return res.status(500).json({ message: "something went wrong", err });
+  }
   if (req.method === "PATCH") {
-    const { name, description, role, image } = JSON.parse(req.body);
+    const op: any = await readfile(req, false, "");
+    console.log(op);
+    const { image, role, description, name } = op.fields;
     try {
       const updateUser = await Users.findOneAndUpdate(
-        { _id: session?.user?.name?.id },
+        { _id: session?.user?.name },
         {
           avatar: image,
           name: name,
@@ -29,23 +71,33 @@ export default async function handler(
           role: role,
         }
       );
-      return res.status(200).json({ message: "successful", updateUser });
+      return res.status(200).json({
+        message: "successful",
+        user: {
+          _id: updateUser?._id,
+          email: updateUser?.email,
+          avatar: image,
+          name: name,
+          description: description,
+          role: role,
+        },
+      });
     } catch (error) {
       return res.status(500).json({ message: "something went wrong", error });
     }
   } else if (req.method === "PUT") {
-    let imageName = "";
     try {
       fs.readdirSync(path.join(process.cwd()) + "/public" + "/user");
     } catch (err) {
       fs.mkdirSync(path.join(process.cwd()) + "/public" + "/user");
     }
     try {
-      const { fields } = await readfile(req, true, imageName, "user");
-      console.log(fields);
-      const { image, role, description, name } = fields;
+      let imageName = "";
+      const op: any = await readfile(req, true, imageName);
+      console.log(op);
+      const { image, role, description, name } = op.fields;
       const updatedUser = await Users.findOneAndUpdate(
-        { _id: session?.user?.name?.id },
+        { _id: session?.user?.name },
         {
           name: name,
           avatar: image,
@@ -53,7 +105,17 @@ export default async function handler(
           description: description,
         }
       );
-      return res.status(200).json({ message: "successful", updatedUser });
+      return res.status(200).json({
+        message: "successful",
+        user: {
+          _id: updatedUser?._id,
+          email: updatedUser?.email,
+          avatar: image,
+          name: name,
+          description: description,
+          role: role,
+        },
+      });
     } catch (err) {
       console.log(err);
       return res.status(500).json({ message: "something went wrong", err });

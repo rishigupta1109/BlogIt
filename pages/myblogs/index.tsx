@@ -12,7 +12,8 @@ import { GetServerSidePropsContext } from "next";
 import { server } from "../../utils/config";
 import CustomButton from "../../components/ui/CustomButton/CustomButton";
 
-export default function MyBlogsPage({ blogs }) {
+export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
+  console.log(blogs);
   const { data: session, status } = useSession();
   const router = useRouter();
   const loading = status === "loading";
@@ -52,27 +53,31 @@ export default function MyBlogsPage({ blogs }) {
   );
 }
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const session = await getSession({ req: context.req });
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
   let blogs = [];
   try {
-    const response = await fetch(`${server}/api/myblogs`, {
-      headers: {
-        authorization: JSON.stringify(session),
-      },
-    });
+    const session = await getSession({ req: context.req });
+    // console.log({ session });
+    if (!session?.user?.name) {
+      return {
+        redirect: {
+          destination: "/",
+          permanent: false,
+        },
+      };
+    }
+
+    const response = await fetch(
+      `${server}/api/myblogs` +
+        "?" +
+        new URLSearchParams({
+          _id: session?.user?.name,
+        })
+    );
     const data = await response.json();
     if (response.status === 200) {
-      blogs = data?.blogs;
+      blogs = data.blogs;
     }
-    // console.log(data);
+    // console.log({ data });
   } catch (error) {
     console.log(error);
   }

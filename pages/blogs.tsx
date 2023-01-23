@@ -9,7 +9,7 @@ import { IBlog } from "../utils/interfaces";
 import { featuredBlogs } from "../utils/dummy";
 import { GetServerSidePropsContext } from "next";
 import { server } from "../utils/config";
-export default function blogsPage({ blogs }) {
+export default function blogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
   let classname = styles.homePage;
   const { darkMode } = useContext(GlobalContext);
@@ -30,7 +30,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const response = await fetch(`${server}/api/blogs`);
     console.log(response);
     const data = await response.json();
-    blogs = data.blogs;
+    if (response.status === 200) blogs = data.blogs;
     console.log(data);
   } catch (error) {
     console.log(error);

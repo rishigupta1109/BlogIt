@@ -21,10 +21,14 @@ export default function ProfilePage({}: Props) {
     }
   }, [session]);
   if (loading) return <div>Loading...</div>;
+  const { user } = useContext(GlobalContext);
+  console.log(user);
   const profileURL =
     "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
-
-  const { name, avatar, description, role, id } = session?.user?.name;
+  if (!user) {
+    return <div>Loading...</div>;
+  }
+  const { name, avatar, description, role, _id } = user;
 
   return (
     <div

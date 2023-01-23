@@ -1,6 +1,7 @@
 import { NextApiRequest } from "next/types";
 import { NextApiResponse } from "next/types";
 import Blogs from "../../../models/blogModel";
+import connectMongo from "./../../../utils/dbConnect";
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -9,6 +10,7 @@ export default async function handler(
   console.log(blogId);
   if (req.method === "GET") {
     try {
+      await connectMongo();
       const blog = await Blogs.findOne({ _id: blogId });
       console.log(blog);
       return res.status(200).json({ message: "successful", blog });

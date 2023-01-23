@@ -16,7 +16,7 @@ type Props = {};
 export default function createblogPage({}: Props) {
   const [preview, setPreview] = useState<boolean>(false);
   const [formData, setFormData] = useState<IBlog>(defaultBlog);
-  const { darkMode } = useContext(GlobalContext);
+  const { darkMode, user } = useContext(GlobalContext);
   const { data: session, status } = useSession();
   const router = useRouter();
   const loading = status === "loading";
@@ -26,16 +26,18 @@ export default function createblogPage({}: Props) {
     if (!loading && !authenticated) {
       router.push("/login");
     } else {
-      if (session?.user?.name)
+      if (user)
         setFormData({
           ...formData,
-          author: session?.user?.name?.id,
-          authorName: session?.user?.name?.name,
-          authorAvatar: session?.user?.name.avatar,
+          author: _id,
+          authorName: name,
+          authorAvatar: avatar,
         });
     }
-    console.log(session);
-  }, [session]);
+    console.log(user);
+  }, [user]);
+  if (!user) return <div>Loading..</div>;
+  const { _id, name, avatar } = user;
   const submitHandler = async (e: any) => {
     e.preventDefault();
     console.log(formData);
@@ -55,14 +57,14 @@ export default function createblogPage({}: Props) {
         setFormData({
           ...defaultBlog,
           body: "",
-          author: session?.user?.name?.id,
-          authorName: session?.user?.name?.name,
-          authorAvatar: session?.user?.name.avatar,
+          author: _id,
+          authorName: name,
+          authorAvatar: avatar,
         });
       } else {
         if (res.message) Message().error(res.message);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.log(err);
       Message().error(err);
     }

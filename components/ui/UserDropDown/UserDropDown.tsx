@@ -13,10 +13,11 @@ export default function UserDropDown({}: Props) {
   const authenticated = status === "authenticated";
   const [show, setShow] = useState<boolean>(false);
   const { darkMode } = useContext(GlobalContext);
+  const { user } = useContext(GlobalContext);
   console.log(show);
   const router = useRouter();
-  const profileURL = session?.user?.name?.avatar
-    ? "/user/" + session?.user?.name?.avatar
+  const profileURL = user?.avatar
+    ? "/user/" + user.avatar
     : "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
   return (
     <div
@@ -39,7 +40,7 @@ export default function UserDropDown({}: Props) {
       <div
         className={show ? styles.dropdown : clsx(styles.dropdown, styles.hide)}
       >
-        <span>Hi! {session?.user?.name?.name}</span>
+        <span>Hi! {user?.name}</span>
         <span
           onClick={() => {
             router.push("/profile");
