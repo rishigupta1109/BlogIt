@@ -14,12 +14,12 @@ type Props = {};
 
 export default function EditPage({}: Props) {
   const { data, status } = useSession();
-  const { user, setUser } = useContext(GlobalContext);
+  const { user, setUser, setLoading } = useContext(GlobalContext);
   const { Message } = useContext(AlertContext);
   if (status === "loading") {
     return <Loader />;
   }
-  if (!user) return <div>Loading...</div>;
+  if (!user) return <Loader />;
   const submitHandler = async (values: any) => {
     console.log(values);
     if (
@@ -37,6 +37,7 @@ export default function EditPage({}: Props) {
       formData.append("role", values.role);
       formData.append("description", values.description);
       try {
+        setLoading(true);
         const user = await updateUserDetailsWithoutImage(formData, data);
         console.log(user);
         if (user.status === 200) {
@@ -47,6 +48,7 @@ export default function EditPage({}: Props) {
         console.log(err);
         Message().error("Something went wrong");
       }
+      setLoading(false);
     } else {
       let formData = new FormData();
       formData.append("image", values.image);
@@ -54,6 +56,7 @@ export default function EditPage({}: Props) {
       formData.append("role", values.role);
       formData.append("description", values.description);
       try {
+        setLoading(true);
         const user = await updateUserDetailsWithImage(formData, data);
         console.log(user);
         if (user.status === 200) {
@@ -64,6 +67,7 @@ export default function EditPage({}: Props) {
         console.log(err);
         Message().error("Something went wrong");
       }
+      setLoading(false);
     }
   };
   const userForm = [

@@ -8,16 +8,24 @@ import Viewer from "../../CreateBlog/Viewer";
 import Tags from "../../ui/Tags/Tags";
 import styles from "./BlogItem.module.scss";
 import viewIcon from "../../../public/images/view.svg";
+import CustomButton from "../../ui/CustomButton/CustomButton";
+import editIcon from "../../../public/images/edit_icon.svg";
+import deleteIcon from "../../../public/images/delete.svg";
+import { deleteBlog } from "../../../utils/services";
+import { AlertContext } from "./../../../store/AlertContext";
 type Props = {
   data: IBlog;
+  isMyBlog?: boolean;
+  setBlogs?: React.Dispatch<React.SetStateAction<IBlog[]>>;
 };
 
-export default function BlogItem({ data }: Props) {
+export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
   const {
     _id,
     title,
     body,
     image,
+    author,
     authorName,
     createdAt,
     authorAvatar,
@@ -78,6 +86,63 @@ export default function BlogItem({ data }: Props) {
       <div className={styles.tagContainer}>
         <Tags tags={tags} />
       </div>
+      {isMyBlog && <AuthorButtons setBlogs={setBlogs} id={_id} />}
     </div>
   );
 }
+
+const AuthorButtons = ({
+  id,
+  setBlogs,
+}: {
+  id: string;
+  setBlogs?: React.Dispatch<React.SetStateAction<IBlog[]>>;
+}) => {
+  const { Message } = useContext(AlertContext);
+  const { setLoading } = useContext(GlobalContext);
+  const deleteBlogHandler = async (id: string) => {
+    setLoading(true);
+    try {
+      const res = await deleteBlog(id);
+      console.log(res);
+      Message().success(res.message);
+      if (setBlogs) setBlogs((prev) => prev.filter((blog) => blog._id !== id));
+    } catch (err: any) {
+      console.log(err);
+      Message().error(err);
+    }
+    setLoading(false);
+  };
+  return (
+    <div className={styles.authorbtns}>
+      <CustomButton
+        bg="transparent"
+        type="filled"
+        corner="100%"
+        border="none"
+        hoverbg="transparent"
+        padding="10px"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+        link={`/myblogs/${id}`}
+      >
+        <Image src={editIcon} alt="edit" height={20} width={20} />
+      </CustomButton>
+      <CustomButton
+        padding="10px"
+        bg="transparent"
+        type="filled"
+        corner="100%"
+        border="none"
+        hoverbg="transparent"
+        onClick={(e) => {
+          e.stopPropagation();
+          deleteBlogHandler(id);
+        }}
+      >
+        <Image src={deleteIcon} alt="delete" height={20} width={20} />
+      </CustomButton>
+    </div>
+  );
+};

@@ -21,7 +21,9 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { blogId } = context.query;
   let blog = {};
   try {
-    const res = await fetch(`${server}/api/blog/${blogId}`);
+    const res = await fetch(`${server}/api/blog/${blogId}`, {
+      method: "PATCH",
+    });
     const data = await res.json();
     console.log(data);
     if (res.status === 200) blog = data.blog;

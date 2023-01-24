@@ -18,6 +18,7 @@ type Props = {
   hoverTextColor?: string;
   src?: any;
   boxShadow?: string;
+  padding?: string;
 };
 
 export default function CustomButton({
@@ -35,6 +36,7 @@ export default function CustomButton({
   hoverTextColor = "white",
   src,
   boxShadow,
+  padding,
 }: Props) {
   if (link) {
     return (
@@ -58,6 +60,7 @@ export default function CustomButton({
           color: textColor ? textColor : "black",
           border: border,
           justifyContent: children ? "space-evenly" : "center",
+          padding: padding ? padding : "",
         }}
       >
         {label}
@@ -89,6 +92,7 @@ export default function CustomButton({
         color: textColor ? textColor : "black",
         border: border,
         justifyContent: children ? "space-evenly" : "center",
+        padding: padding ? padding : "",
       }}
     >
       {label}

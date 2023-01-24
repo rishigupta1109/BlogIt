@@ -15,16 +15,17 @@ import Loader from "../../components/ui/Loader/Loader";
 
 export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
+  const [blogsData, setBlogsData] = useState<IBlog[]>(blogs);
   const { data: session, status } = useSession();
   const router = useRouter();
   const loading = status === "loading";
   const authenticated = status === "authenticated";
-  if (loading) return <Loader />;
   useEffect(() => {
     if (!loading && !authenticated) {
       router.push("/login");
     }
   }, [session]);
+  if (loading) return <Loader />;
   let classname = styles.homePage;
   const { darkMode } = useContext(GlobalContext);
   if (darkMode) classname = clsx(styles.homePage, styles.dark);
@@ -33,11 +34,11 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
     <div>
       <main className={classname}>
         <h1>Your Blogs</h1>
-        {blogs?.length > 0 ? (
-          <BlogList blogs={blogs} />
+        {blogsData?.length > 0 ? (
+          <BlogList setBlogs={setBlogsData} isMyBlog={true} blogs={blogsData} />
         ) : (
           <div>
-            <p>No Blogs Found</p>
+            <h2>No Blogs Found</h2>
             <CustomButton
               bg="var(--dark-color-primary)"
               corner="6px"

@@ -16,6 +16,7 @@ export const readfile = async (
   saveLocally: boolean,
   imageName: string
 ) => {
+  console.log({ saveLocally });
   let options: formidable.Options = {};
   let name: string;
   if (saveLocally) {
@@ -31,7 +32,9 @@ export const readfile = async (
   return new Promise((resolve, reject) => {
     form.parse(req, (err, fields, files) => {
       if (err) reject(err);
-      fields.image = imageName;
+      if (saveLocally) {
+        fields.image = imageName;
+      }
       resolve({ fields, files });
     });
   });

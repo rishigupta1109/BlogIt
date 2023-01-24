@@ -1,3 +1,5 @@
+import { server } from "./config";
+
 export const signup = async (name: string, email: string, password: string) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
@@ -15,6 +17,27 @@ export const createBlog = async (formData: FormData) => {
   const response = await fetch("/api/blog/create", {
     method: "POST",
     body: formData,
+  });
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};
+export const updateBlog = async (
+  formData: FormData,
+  id: string,
+  saveLocally: boolean
+) => {
+  const response = await fetch(`/api/blog/${id}?saveLocally=${saveLocally}`, {
+    method: "PUT",
+    body: formData,
+  });
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};
+export const deleteBlog = async (id: string) => {
+  const response = await fetch(`/api/blog/${id}`, {
+    method: "DELETE",
   });
   const data = await response.json();
   data.status = response.status;
@@ -46,6 +69,13 @@ export const updateUserDetailsWithoutImage = async (
 };
 export const getUserData = async (id: string) => {
   const response = await fetch(`/api/user/${id}`);
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};
+export const getBlogDetails = async (id: string | string[]) => {
+  console.log(id);
+  const response = await fetch(`${server}/api/blog/${id}`);
   const data = await response.json();
   data.status = response.status;
   return data;

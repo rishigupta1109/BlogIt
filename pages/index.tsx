@@ -16,7 +16,11 @@ export default function HomePage({ blogs }: { blogs: IBlog[] }) {
     <>
       <main className={classname}>
         <h1>Featured Blogs</h1>
-        {blogs?.length > 0 ? <BlogList blogs={blogs} /> : <p>No blogs found</p>}
+        {blogs?.length > 0 ? (
+          <BlogList isMyBlog={false} blogs={blogs} />
+        ) : (
+          <h2>No blogs found</h2>
+        )}
       </main>
     </>
   );

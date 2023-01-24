@@ -6,7 +6,7 @@
     margin: 5px 15px;
     background-color: $light-color-ternary;
     @extend .column;
-    justify-content: baseline;
+    justify-content: space-between;
     box-shadow: 5px 5px 5px $light-color-primary;
     h3{
         color:$dark-color-secondary;
@@ -99,4 +99,10 @@
 }
 .profilepic{
     border-radius: 100%;
+}
+
+.authorbtns{
+    @extend .row;
+    justify-content: space-evenly;
+    padding: 15px 0;
 }
