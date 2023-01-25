@@ -5,7 +5,7 @@ import Image from "next/image";
 type Props = {
   label: string;
   type: string;
-  value: string | number;
+  value: any;
   changeHandler: (e: any) => void;
   name: string;
   error?: boolean;
