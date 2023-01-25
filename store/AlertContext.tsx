@@ -44,7 +44,7 @@ const AlertContextProvider: React.FC<AlertContextProviderProps> = ({
       success: function (
         message: string,
         autoClose: boolean = true,
-        duration: number = 1000
+        duration: number = 2000
       ) {
         console.log(message, autoClose, duration);
         setAlerts((state) => [
@@ -65,7 +65,7 @@ const AlertContextProvider: React.FC<AlertContextProviderProps> = ({
       error: function (
         message: string,
         autoClose: boolean = true,
-        duration: number = 1000
+        duration: number = 2000
       ) {
         console.log(message, autoClose, duration);
         setAlerts((state) => [
@@ -86,7 +86,7 @@ const AlertContextProvider: React.FC<AlertContextProviderProps> = ({
       warning: function (
         message: string,
         autoClose: boolean = true,
-        duration: number = 1000
+        duration: number = 2000
       ) {
         console.log(message, autoClose, duration);
         setAlerts((state) => [

@@ -13,6 +13,7 @@ import editIcon from "../../../public/images/edit_icon.svg";
 import deleteIcon from "../../../public/images/delete.svg";
 import { deleteBlog } from "../../../utils/services";
 import { AlertContext } from "./../../../store/AlertContext";
+import Modal from "../../Modal/Modal";
 type Props = {
   data: IBlog;
   isMyBlog?: boolean;
@@ -100,6 +101,7 @@ const AuthorButtons = ({
 }) => {
   const { Message } = useContext(AlertContext);
   const { setLoading } = useContext(GlobalContext);
+  const [showModal, setShowModal] = React.useState(false);
   const deleteBlogHandler = async (id: string) => {
     setLoading(true);
     try {
@@ -115,6 +117,18 @@ const AuthorButtons = ({
   };
   return (
     <div className={styles.authorbtns}>
+      <Modal
+        text="Are you sure you want to delete this blog?"
+        show={showModal}
+        onYes={(e) => {
+          e.stopPropagation();
+          deleteBlogHandler(id);
+        }}
+        onNo={(e) => {
+          e.stopPropagation();
+          setShowModal(false);
+        }}
+      />
       <CustomButton
         bg="transparent"
         type="filled"
@@ -138,7 +152,7 @@ const AuthorButtons = ({
         hoverbg="transparent"
         onClick={(e) => {
           e.stopPropagation();
-          deleteBlogHandler(id);
+          setShowModal(true);
         }}
       >
         <Image src={deleteIcon} alt="delete" height={20} width={20} />

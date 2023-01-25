@@ -9,7 +9,7 @@ import { IBlog } from "../../utils/interfaces";
 import { featuredBlogs } from "../../utils/dummy";
 import { GetServerSidePropsContext } from "next";
 import { server } from "../../utils/config";
-export default function blogsPage({ blogs }: { blogs: IBlog[] }) {
+export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
   let classname = styles.homePage;
   const { darkMode } = useContext(GlobalContext);

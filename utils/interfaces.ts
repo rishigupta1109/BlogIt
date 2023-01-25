@@ -9,10 +9,17 @@ export interface IUser {
 }
 
 export interface Icomment {
-  id: string;
+  _id?: string;
   text: string;
   createdAt: Date;
   user: IUser;
+  blogId: string;
+}
+export interface ILike {
+  _id?: string;
+  createdAt: Date;
+  userId: string;
+  blogId: string;
 }
 export interface IBlog {
   _id: string;

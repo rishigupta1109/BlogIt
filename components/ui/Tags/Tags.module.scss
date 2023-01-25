@@ -5,11 +5,12 @@
     font-size: 15px;
     text-align: center;
     padding: 8px 15px;
-    margin:5px 5px;
+    margin:5px 0px;
 }
 .container{
     margin: 10px 0;
     @extend .row;
     align-items: center;
     flex-wrap: wrap;
+    gap:10px;
 }

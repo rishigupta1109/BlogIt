@@ -14,7 +14,7 @@ import { GetServerSidePropsContext } from "next";
 import Loader from "../components/ui/Loader/Loader";
 type Props = {};
 
-export default function createblogPage({}: Props) {
+export default function CreateBlogPage({}: Props) {
   const [preview, setPreview] = useState<boolean>(false);
   const [formData, setFormData] = useState<IBlog>(defaultBlog);
   const { darkMode, user } = useContext(GlobalContext);

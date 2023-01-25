@@ -80,3 +80,36 @@ export const getBlogDetails = async (id: string | string[]) => {
   data.status = response.status;
   return data;
 };
+export const deleteLike = async (userId: string, blogId: string) => {
+  const response = await fetch(
+    `${server}/api/blog/${blogId}/like?userId=${userId}`,
+    {
+      method: "DELETE",
+    }
+  );
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};
+export const addLike = async (userId: string, blogId: string) => {
+  const response = await fetch(`${server}/api/blog/${blogId}/like`, {
+    method: "POST",
+    body: JSON.stringify({ userId, blogId }),
+  });
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};
+export const addComment = async (
+  userId: string,
+  blogId: string,
+  text: string
+) => {
+  const response = await fetch(`${server}/api/blog/${blogId}/comment`, {
+    method: "POST",
+    body: JSON.stringify({ userId, blogId, text }),
+  });
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};

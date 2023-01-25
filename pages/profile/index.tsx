@@ -8,6 +8,7 @@ import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import Loader from "../../components/ui/Loader/Loader";
+import UserProfile from "./../../components/profile/index";
 type Props = {};
 
 export default function ProfilePage({}: Props) {
@@ -27,39 +28,19 @@ export default function ProfilePage({}: Props) {
   const profileURL =
     "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
   if (!user) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
-  const { name, avatar, description, role, _id } = user;
+  const { name, avatar, description, role, _id }: any = user;
 
   return (
-    <div
-      className={
-        darkMode ? clsx(styles.container, styles.dark) : styles.container
-      }
-    >
-      <div className={styles.header}></div>
-      <div className={styles.profile}>
-        <Image src={`/user/${avatar}`} alt="profile" height={150} width={150} />
-        {name && <h1>{name}</h1>}
-        {role && <h3>{role}</h3>}
-        {<p>{description}</p>}
-        <CustomButton
-          link="/profile/edit"
-          label="Edit Details"
-          corner="6px"
-          textColor="white"
-          type="filled"
-          bg={
-            darkMode
-              ? "var(--dark-color-primary)"
-              : "var(--light-color-primary)"
-          }
-          border="none"
-          hoverTextColor="white"
-          hoverbg="var(--dark-color-secondary)"
-        />
-      </div>
-    </div>
+    <UserProfile
+      height="85vh"
+      name={name}
+      avatar={avatar}
+      description={description}
+      role={role}
+      canEdit={true}
+    />
   );
 }
 export async function getServerSideProps(context: GetServerSidePropsContext) {

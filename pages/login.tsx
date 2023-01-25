@@ -9,7 +9,7 @@ import { GetServerSidePropsContext } from "next";
 import { GlobalContext } from "../store/GlobalContext";
 type Props = {};
 
-export default function loginPage({}: Props) {
+export default function LoginPage({}: Props) {
   const { status } = useSession();
   const router = useRouter();
   const { setLoading } = useContext(GlobalContext);
