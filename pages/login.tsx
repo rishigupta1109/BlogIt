@@ -11,8 +11,9 @@ type Props = {};
 
 export default function LoginPage({}: Props) {
   const { status } = useSession();
-  const router = useRouter();
   const { setLoading } = useContext(GlobalContext);
+  const router = useRouter();
+  const { Message } = useContext(AlertContext);
   const loading = status === "loading";
   const authenticated = status === "authenticated";
   if (loading) return <Loader />;
@@ -35,7 +36,6 @@ export default function LoginPage({}: Props) {
       minLength: 6,
     },
   ];
-  const { Message } = useContext(AlertContext);
   const loginHandler = async (values: any) => {
     console.log(values);
     //result is a promise that is never rejected but will contain error data if error occured

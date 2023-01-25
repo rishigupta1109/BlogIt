@@ -20,6 +20,7 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
   const router = useRouter();
   const loading = status === "loading";
   const authenticated = status === "authenticated";
+  const { darkMode } = useContext(GlobalContext);
   useEffect(() => {
     if (!loading && !authenticated) {
       router.push("/login");
@@ -27,7 +28,6 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
   }, [session]);
   if (loading) return <Loader />;
   let classname = styles.homePage;
-  const { darkMode } = useContext(GlobalContext);
   if (darkMode) classname = clsx(styles.homePage, styles.dark);
 
   return (

@@ -32,6 +32,7 @@ export default function Footer({}: Props) {
         Developed by :{"  "}
         <a
           target="_blank"
+          rel="noreferrer"
           className={styles.name}
           href="https://www.linkedin.com/in/rishi-gupta-027298204/"
         >

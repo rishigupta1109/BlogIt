@@ -17,13 +17,13 @@ export default function ProfilePage({}: Props) {
   const router = useRouter();
   const loading = status === "loading";
   const authenticated = status === "authenticated";
+  const { user } = useContext(GlobalContext);
   useEffect(() => {
     if (!loading && !authenticated) {
       router.push("/login");
     }
   }, [session]);
   if (loading) return <Loader />;
-  const { user } = useContext(GlobalContext);
   console.log(user);
   const profileURL =
     "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";

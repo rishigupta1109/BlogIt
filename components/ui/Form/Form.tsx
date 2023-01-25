@@ -102,6 +102,7 @@ export default function Form({ link, heading, submitHandler, fields }: Props) {
         {fields.map((field) => {
           return (
             <CustomInput
+              key={field.name}
               value={inputs[field.name]}
               name={field.name}
               type={field.type}
