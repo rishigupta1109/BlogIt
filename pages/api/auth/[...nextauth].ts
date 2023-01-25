@@ -5,6 +5,7 @@ import User from "../../../models/userModel";
 import { verifyPassword } from "./../../../utils/helper";
 import { RequestInternal } from "next-auth";
 export const authOptions = {
+  secret: process.env.NEXT_PUBLIC_SECRET,
   providers: [
     CredentialsProvider({
       session: {
