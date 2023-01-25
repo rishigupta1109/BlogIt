@@ -6,6 +6,7 @@ import { signup } from "../utils/services";
 import { useRouter } from "next/router";
 import { getSession } from "next-auth/react";
 import { GetServerSidePropsContext } from "next";
+import CustomHead from "./../components/CustomHead/CustomHead";
 
 type Props = {};
 
@@ -74,6 +75,11 @@ export default function RegisterPage({}: Props) {
   };
   return (
     <div>
+      <CustomHead
+        title={"Register to Blogit"}
+        image={"/images/logowonblock.png"}
+        description={"Register to Blogit"}
+      />
       <Form
         link={{
           text: "already have an account?",

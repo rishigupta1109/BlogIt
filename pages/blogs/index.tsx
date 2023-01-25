@@ -9,6 +9,7 @@ import { IBlog } from "../../utils/interfaces";
 import { featuredBlogs } from "../../utils/dummy";
 import { GetServerSidePropsContext } from "next";
 import { server } from "../../utils/config";
+import CustomHead from "../../components/CustomHead/CustomHead";
 export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
   let classname = styles.homePage;
@@ -16,6 +17,11 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   if (darkMode) classname = clsx(styles.homePage, styles.dark);
   return (
     <div>
+      <CustomHead
+        title={"Blogs"}
+        image={"/images/logoBonW.png"}
+        description={"A number of awesome blogs to read from. Only on BlogIt"}
+      />
       <main className={classname}>
         <h1>Blogs</h1>
         {blogs?.length < 1 && <h2>No blogs found</h2>}

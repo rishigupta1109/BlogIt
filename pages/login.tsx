@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import Loader from "./../components/ui/Loader/Loader";
 import { GetServerSidePropsContext } from "next";
 import { GlobalContext } from "../store/GlobalContext";
+import CustomHead from "./../components/CustomHead/CustomHead";
 type Props = {};
 
 export default function LoginPage({}: Props) {
@@ -56,6 +57,11 @@ export default function LoginPage({}: Props) {
   };
   return (
     <div>
+      <CustomHead
+        title={"Login to Blogit"}
+        image={"/images/logowonblock.png"}
+        description={"Login to Blogit"}
+      />
       <Form
         link={{
           text: "Not have an account?",

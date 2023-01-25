@@ -6,6 +6,7 @@ import { server } from "../../utils/config";
 import { IBlog } from "../../utils/interfaces";
 import Back from "./../../components/ui/back/Back";
 import { getSession } from "next-auth/react";
+import CustomHead from "../../components/CustomHead/CustomHead";
 type Props = {
   blog: IBlog;
   hasLiked: boolean;
@@ -13,6 +14,13 @@ type Props = {
 export default function BlogPage({ blog, hasLiked }: Props) {
   return (
     <div className={styles.blogContainer}>
+      <CustomHead
+        title={blog.title}
+        image={blog.image}
+        description={blog.body}
+        author={blog.author}
+        keywords={blog.tags}
+      />
       <Back />
       <Blog hasLiked={hasLiked} blog={blog} />
     </div>

@@ -4,6 +4,7 @@ import UserProfile from "../../../components/profile";
 import { GetServerSidePropsContext } from "next";
 import { server } from "./../../../utils/config";
 import BlogList from "../../../components/blog/bloglist/BlogList";
+import CustomHead from "./../../../components/CustomHead/CustomHead";
 
 type Props = {
   blogs: IBlog[];
@@ -13,6 +14,12 @@ type Props = {
 export default function UserBlogsPage({ blogs, user }: Props) {
   return (
     <div style={{ textAlign: "center" }}>
+      <CustomHead
+        title={user.name}
+        image={user.avatar}
+        description={"Collection of blogs by " + user.name + "."}
+        author={user.name}
+      />
       <UserProfile
         height="fit-content"
         name={user.name}

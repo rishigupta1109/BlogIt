@@ -12,6 +12,7 @@ import { createBlog } from "../utils/services";
 import { AlertContext } from "../store/AlertContext";
 import { GetServerSidePropsContext } from "next";
 import Loader from "../components/ui/Loader/Loader";
+import CustomHead from "../components/CustomHead/CustomHead";
 type Props = {};
 
 export default function CreateBlogPage({}: Props) {
@@ -77,6 +78,12 @@ export default function CreateBlogPage({}: Props) {
         darkMode ? clsx(styles.container, styles.dark) : styles.container
       }
     >
+      <CustomHead
+        title={"Create Blog"}
+        image={user.avatar}
+        description={"Create a new blog here."}
+        author={user.name}
+      />
       <div className={styles.switchBox}>
         <h1
           className={!preview ? styles.active : ""}

@@ -12,6 +12,7 @@ import { createBlog, getBlogDetails, updateBlog } from "../../utils/services";
 import { AlertContext } from "../../store/AlertContext";
 import { GetServerSidePropsContext } from "next";
 import Loader from "../../components/ui/Loader/Loader";
+import CustomHead from "./../../components/CustomHead/CustomHead";
 type Props = {
   blog: IBlog;
 };
@@ -75,6 +76,13 @@ export default function EditBlogPage({ blog }: Props) {
         darkMode ? clsx(styles.container, styles.dark) : styles.container
       }
     >
+      <CustomHead
+        title={blog.title}
+        image={blog.image}
+        description={blog.body}
+        author={blog.author}
+        keywords={blog.tags}
+      />
       <div className={styles.switchBox}>
         <h1
           className={!preview ? styles.active : ""}

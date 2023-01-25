@@ -12,6 +12,7 @@ import { GetServerSidePropsContext } from "next";
 import { server } from "../../utils/config";
 import CustomButton from "../../components/ui/CustomButton/CustomButton";
 import Loader from "../../components/ui/Loader/Loader";
+import CustomHead from "./../../components/CustomHead/CustomHead";
 
 export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
@@ -33,6 +34,12 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
   return (
     <div>
       <main className={classname}>
+        <CustomHead
+          title={"Your Blogs"}
+          image={"/images/logoBonW.png"}
+          description={"Collection of blogs by You"}
+          author={"YOU"}
+        />
         <h1>Your Blogs</h1>
         {blogsData?.length > 0 ? (
           <BlogList setBlogs={setBlogsData} isMyBlog={true} blogs={blogsData} />

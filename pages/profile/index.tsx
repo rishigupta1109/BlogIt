@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { GetServerSidePropsContext } from "next";
 import Loader from "../../components/ui/Loader/Loader";
 import UserProfile from "./../../components/profile/index";
+import CustomHead from "./../../components/CustomHead/CustomHead";
 type Props = {};
 
 export default function ProfilePage({}: Props) {
@@ -33,14 +34,22 @@ export default function ProfilePage({}: Props) {
   const { name, avatar, description, role, _id }: any = user;
 
   return (
-    <UserProfile
-      height="85vh"
-      name={name}
-      avatar={avatar}
-      description={description}
-      role={role}
-      canEdit={true}
-    />
+    <>
+      <CustomHead
+        title={user.name}
+        image={user.avatar}
+        description={"Profile of " + user.name + "."}
+        author={user.name}
+      />
+      <UserProfile
+        height="85vh"
+        name={name}
+        avatar={avatar}
+        description={description}
+        role={role}
+        canEdit={true}
+      />
+    </>
   );
 }
 export async function getServerSideProps(context: GetServerSidePropsContext) {

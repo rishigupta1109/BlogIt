@@ -9,6 +9,7 @@ import { GlobalContext } from "../../store/GlobalContext";
 import { GetServerSidePropsContext } from "next";
 import { AlertContext } from "./../../store/AlertContext";
 import Loader from "../../components/ui/Loader/Loader";
+import CustomHead from "./../../components/CustomHead/CustomHead";
 
 type Props = {};
 
@@ -105,6 +106,12 @@ export default function EditPage({}: Props) {
   ];
   return (
     <div>
+      <CustomHead
+        title={"Edit Your Profile"}
+        image={user.avatar}
+        description={"Edit your profile details"}
+        author={user.name}
+      />
       <Form
         heading="Edit Profile"
         submitHandler={submitHandler}
