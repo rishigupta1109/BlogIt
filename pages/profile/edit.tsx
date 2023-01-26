@@ -71,6 +71,10 @@ export default function EditPage({}: Props) {
       setLoading(false);
     }
   };
+  let avatar = user.avatar;
+  if (user.avatar === "profile.jpg") {
+    avatar = "/user/profile.jpg";
+  }
   const userForm = [
     {
       name: "image",
@@ -78,7 +82,7 @@ export default function EditPage({}: Props) {
       label: "Image",
       required: false,
       errorText: "Please upload a valid image",
-      defaultValue: user?.avatar,
+      defaultValue: avatar,
     },
     {
       name: "name",

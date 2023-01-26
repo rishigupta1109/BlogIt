@@ -32,19 +32,22 @@ export default function ProfilePage({}: Props) {
     return <Loader />;
   }
   const { name, avatar, description, role, _id }: any = user;
-
+  let av = avatar;
+  if (avatar === "profile.jpg") {
+    av = "/user/profile.jpg";
+  }
   return (
     <>
       <CustomHead
         title={user.name}
-        image={user.avatar}
+        image={av}
         description={"Profile of " + user.name + "."}
         author={user.name}
       />
       <UserProfile
         height="85vh"
         name={name}
-        avatar={avatar}
+        avatar={av}
         description={description}
         role={role}
         canEdit={true}
