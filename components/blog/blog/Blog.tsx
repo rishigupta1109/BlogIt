@@ -45,9 +45,10 @@ export default function Blog({ blog, hasLiked, preview }: Props) {
   //     ? URL.createObjectURL(blog?.image)
   //     : "/blogimages/" + blog?.image;
   let previewImage = blog?.image;
-  const imageURL = blog?.authorAvatar
-    ? blog?.authorAvatar
-    : "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
+  const imageURL =
+    blog?.authorAvatar !== "profile.jpg"
+      ? blog?.authorAvatar
+      : "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
 
   const likeHandler = async () => {
     if (!user) return Message().warning("Please login to like this blog");
