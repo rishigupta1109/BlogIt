@@ -2,6 +2,9 @@ import React from "react";
 import styles from "./CustomInput.module.scss";
 import CustomButton from "../CustomButton/CustomButton";
 import Image from "next/image";
+import { IKUpload } from "imagekitio-react";
+import { AlertContext } from "../../../store/AlertContext";
+import { GlobalContext } from "../../../store/GlobalContext";
 type Props = {
   label: string;
   type: string;
@@ -60,22 +63,46 @@ const CustomFileInput = ({
   error = false,
   errorText,
 }: Props) => {
+  const { Message } = React.useContext(AlertContext);
+  const { setLoading } = React.useContext(GlobalContext);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  let previewImage: string =
-    typeof value !== "string" ? URL.createObjectURL(value) : "/user/" + value;
-  if (value === "") previewImage = "/user/profile.png";
+  let previewImage: string = value;
+  if (previewImage === "") {
+    previewImage = "/user/profile.jpg";
+  }
+  const onSuccess = (res: any) => {
+    console.log(res);
+    setLoading(false);
+    changeHandler({ target: { name, value: res.url } });
+    Message().success("image added");
+  };
+  const onError = (err: any) => {
+    setLoading(false);
+    console.log(err);
+    Message().error("Error uploading image");
+  };
   return (
     <div className={styles.container}>
       <label>{label}</label>
       <div className={styles.subContainer}>
         <div className={styles.rowContainer}>
-          <input
+          {/* <input
             hidden
             type={type}
             onChange={changeHandler}
             name={name}
             ref={inputRef}
             style={{ border: error ? "1px solid red" : "" }}
+          /> */}
+          <IKUpload
+            fileName="test-upload.png"
+            onError={onError}
+            onSuccess={onSuccess}
+            style={{ display: "none" }}
+            inputRef={inputRef}
+            onUploadStart={() => {
+              setLoading(true);
+            }}
           />
           <Image src={previewImage} alt="image" height={45} width={45} />
           <CustomButton

@@ -22,7 +22,7 @@ export default function UserProfile({
   height = "85vh",
 }: Props) {
   const { darkMode } = useContext(GlobalContext);
-
+  if (avatar === undefined || avatar === "") avatar = "/user/profile.jpg";
   return (
     <div
       className={
@@ -32,7 +32,7 @@ export default function UserProfile({
     >
       <div className={styles.header}></div>
       <div className={styles.profile}>
-        <Image src={`/user/${avatar}`} alt="profile" height={150} width={150} />
+        <Image src={`${avatar}`} alt="profile" height={150} width={150} />
         {name && <h1>{name}</h1>}
         {role && <h3>{role}</h3>}
         {description && <p>{description}</p>}

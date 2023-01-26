@@ -11,6 +11,7 @@ import CustomButton from "../ui/CustomButton/CustomButton";
 import styles from "./BlogForm.module.scss";
 import Editor, { EditorContentChanged } from "./Editor";
 import { AlertContext } from "../../store/AlertContext";
+import { IKUpload } from "imagekitio-react";
 type Props = {
   setFormData: React.Dispatch<IBlog>;
   formData: IBlog;
@@ -18,7 +19,7 @@ type Props = {
 };
 
 export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
-  const { darkMode } = useContext(GlobalContext);
+  const { darkMode, setLoading } = useContext(GlobalContext);
   const { Message } = useContext(AlertContext);
   const onEditorContentChanged = (content: EditorContentChanged) => {
     setFormData({ ...formData, body: content.markdown });
@@ -27,16 +28,27 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
     console.log(e.target.value);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<any>(null);
   const [selectedFile, setSelectedFile] = useState<any>(null);
   console.log({ body: formData?.body });
+  const onSuccess = (res: any) => {
+    console.log(res);
+    setFormData({ ...formData, image: res.url });
+    Message().success("Cover image added");
+    setLoading(false);
+  };
+  const onError = (err: any) => {
+    Message().error("Error uploading image");
+    console.log(err);
+    setLoading(false);
+  };
   return (
     <form
       className={!darkMode ? styles.form : clsx(styles.form, styles.dark)}
       onSubmit={onSubmit}
     >
       <div className={styles.inputContainer}>
-        <input
+        {/* <input
           ref={inputRef}
           name="image"
           type={"file"}
@@ -50,6 +62,16 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
               Message().success("Cover image added");
             }
           }}
+        /> */}
+        <IKUpload
+          fileName="test-upload.png"
+          onError={onError}
+          onSuccess={onSuccess}
+          style={{ display: "none" }}
+          inputRef={inputRef}
+          onUploadStart={() => {
+            setLoading(true);
+          }}
         />
         <CustomButton
           type="outlined"
@@ -60,6 +82,7 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
           label={selectedFile ? "Change cover photo" : "Add a cover photo"}
           onClick={(e) => {
             e.preventDefault();
+            console.log(inputRef.current);
             inputRef.current?.click();
           }}
         />

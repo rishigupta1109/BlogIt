@@ -93,7 +93,7 @@ export default async function handler(
     }
     try {
       let imageName = "";
-      const op: any = await readfile(req, true, imageName);
+      const op: any = await readfile(req, false, imageName);
       console.log(op);
       const { image, role, description, name } = op.fields;
       const updatedUser = await Users.findOneAndUpdate(

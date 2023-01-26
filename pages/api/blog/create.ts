@@ -55,7 +55,7 @@ export default async function handler(
     fs.mkdirSync(path.join(process.cwd()) + "/public" + "/blogimages");
   }
   let imageName = "";
-  const { fields }: any = await readfile(req, true, imageName);
+  const { fields }: any = await readfile(req, false, imageName);
 
   const {
     title,

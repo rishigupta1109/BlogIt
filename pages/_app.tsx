@@ -7,6 +7,7 @@ import { GlobalContextProvider } from "../store/GlobalContext";
 import localFont from "@next/font/local";
 import AlertContextProvider from "../store/AlertContext";
 import { SessionProvider } from "next-auth/react";
+import { IKContext } from "imagekitio-react";
 
 // Font files can be colocated inside of `pages`
 const myFont = localFont({
@@ -34,17 +35,26 @@ const myFont = localFont({
   ],
 });
 export default function App({ Component, pageProps }: AppProps) {
+  const publicKey = "public_+pZA5vBl6tmNYnxYgMer/JCMlQk=";
+  const urlEndpoint = "https://ik.imagekit.io/avy76kxdy";
   return (
     <main className={myFont.className}>
-      <SessionProvider session={pageProps.session}>
-        <GlobalContextProvider>
-          <Layout>
-            <AlertContextProvider>
-              <Component {...pageProps} />
-            </AlertContextProvider>
-          </Layout>
-        </GlobalContextProvider>
-      </SessionProvider>
+      <IKContext
+        publicKey={publicKey}
+        urlEndpoint={urlEndpoint}
+        authenticationEndpoint={"http://localhost:3000/api/auth/imagekit-auth"}
+      >
+        <SessionProvider session={pageProps.session}>
+          <GlobalContextProvider>
+            <Layout>
+              <AlertContextProvider>
+                {/* ...child components */}
+                <Component {...pageProps} />
+              </AlertContextProvider>
+            </Layout>
+          </GlobalContextProvider>
+        </SessionProvider>
+      </IKContext>
     </main>
   );
 }

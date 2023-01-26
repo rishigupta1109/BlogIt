@@ -42,15 +42,14 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
   const handleOpenBlog = () => {
     router.push(`/blogs/${_id}`);
   };
-  let previewImage: string =
-    typeof image !== "string"
-      ? URL.createObjectURL(image)
-      : "/blogimages/" + image;
-  if (previewImage === "/blogimages/")
-    previewImage =
-      "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
+  // let previewImage: string =
+  //   typeof image !== "string"
+  //     ? URL.createObjectURL(image)
+  //     : "/blogimages/" + image;
+  let previewImage: string = image;
+  if (previewImage === "") previewImage = "/images/loading3.gif";
   const imageURL = authorAvatar
-    ? "/user/" + authorAvatar
+    ? authorAvatar
     : "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
   return (
     <div className={classname} onClick={handleOpenBlog}>

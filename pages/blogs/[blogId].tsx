@@ -22,7 +22,7 @@ export default function BlogPage({ blog, hasLiked }: Props) {
         keywords={blog.tags}
       />
       <Back />
-      <Blog hasLiked={hasLiked} blog={blog} />
+      <Blog preview={false} hasLiked={hasLiked} blog={blog} />
     </div>
   );
 }

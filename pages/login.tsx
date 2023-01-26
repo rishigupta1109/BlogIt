@@ -12,7 +12,7 @@ type Props = {};
 
 export default function LoginPage({}: Props) {
   const { status } = useSession();
-  const { setLoading } = useContext(GlobalContext);
+  const { setLoading, setSession } = useContext(GlobalContext);
   const router = useRouter();
   const { Message } = useContext(AlertContext);
   const loading = status === "loading";
@@ -46,10 +46,13 @@ export default function LoginPage({}: Props) {
       email: values.email,
       password: values.password,
     });
+    console.log(result);
     if (result?.error) {
       Message().error(result.error, false);
     } else {
       Message().success("Login Successfull", false);
+      const session = await getSession();
+      setSession(session);
       router.push("/");
     }
     console.log(result);

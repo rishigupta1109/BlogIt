@@ -14,6 +14,7 @@ export const GlobalContext = createContext({
   setLoading: (value: boolean) => {},
   user: {} as IUser | undefined,
   setUser: (value: IUser) => {},
+  setSession: (value: any) => {},
 });
 
 export function GlobalContextProvider({
@@ -62,6 +63,7 @@ export function GlobalContextProvider({
         setShowMobileMenu,
         user,
         setUser,
+        setSession
       }}
     >
       {children}

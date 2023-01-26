@@ -2,7 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["images.unsplash.com", "icon2.cleanpng.com"], //make it 'your-domain.com'
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: ["images.unsplash.com", "icon2.cleanpng.com", "ik.imagekit.io"], //make it 'your-domain.com'
   },
   env: {
     MONGODB_URL: process.env.MONGODB_URL,

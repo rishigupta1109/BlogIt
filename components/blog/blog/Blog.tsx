@@ -19,9 +19,10 @@ import { addComment } from "./../../../utils/services";
 type Props = {
   blog: IBlog;
   hasLiked?: boolean;
+  preview: boolean;
 };
 
-export default function Blog({ blog, hasLiked }: Props) {
+export default function Blog({ blog, hasLiked, preview }: Props) {
   const [liked, setLiked] = useState(hasLiked);
   const [liking, setLiking] = useState(false);
   const [likes, setLikes] = useState(blog?.likes || 0);
@@ -39,13 +40,13 @@ export default function Blog({ blog, hasLiked }: Props) {
   const { darkMode } = useContext(GlobalContext);
   console.log(blog);
 
-  let previewImage: string =
-    typeof blog?.image !== "string"
-      ? URL.createObjectURL(blog?.image)
-      : "/blogimages/" + blog?.image;
-  if (previewImage === "/blogimages/") previewImage = "";
+  // let previewImage: string =
+  //   typeof blog?.image !== "string"
+  //     ? URL.createObjectURL(blog?.image)
+  //     : "/blogimages/" + blog?.image;
+  let previewImage = blog?.image;
   const imageURL = blog?.authorAvatar
-    ? "/user/" + blog?.authorAvatar
+    ? blog?.authorAvatar
     : "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
 
   const likeHandler = async () => {
@@ -100,48 +101,56 @@ export default function Blog({ blog, hasLiked }: Props) {
         {tags.length > 0 && <Tags tags={tags} key={blog._id} />}
         <Viewer value={blog.body} />
       </div>
-      <div className={styles.moreblogs}>
-        <div className={styles.likecontainer}>
-          {!liking && (
-            <Image
-              onClick={likeHandler}
-              alt="like"
-              src={liked ? heartIcon2 : heartIcon}
-              height={25}
-              width={25}
-              className={styles.like}
-            />
-          )}
-          {liking && (
-            <Image
-              onClick={likeHandler}
-              alt="like"
-              src={likeLoadingIcon}
-              height={25}
-              width={25}
-              className={styles.like}
-            />
-          )}
-          {likes}
+      {!preview && (
+        <div className={styles.moreblogs}>
+          <div className={styles.likecontainer}>
+            {!liking && (
+              <Image
+                onClick={likeHandler}
+                alt="like"
+                src={liked ? heartIcon2 : heartIcon}
+                height={25}
+                width={25}
+                className={styles.like}
+              />
+            )}
+            {liking && (
+              <Image
+                onClick={likeHandler}
+                alt="like"
+                src={likeLoadingIcon}
+                height={25}
+                width={25}
+                className={styles.like}
+              />
+            )}
+            {likes}
+          </div>
+          <div>
+            <CustomButton
+              border="0"
+              corner="6px"
+              hoverbg="white"
+              link={`/blogs/user/${blog?.author}`}
+              bg="white"
+              textColor="var(--dark-color-primary)"
+              hoverTextColor="var(--dark-color-primary)"
+            >
+              <div className={styles.moreby}>
+                <p>More from {blog.authorName}</p>
+                <Image src={imageURL} alt="profile" height={30} width={30} />
+              </div>
+            </CustomButton>
+          </div>
         </div>
-        <div>
-          <CustomButton
-            border="0"
-            corner="6px"
-            hoverbg="white"
-            link={`/blogs/user/${blog?.author}`}
-            bg="white"
-            textColor="var(--dark-color-primary)"
-            hoverTextColor="var(--dark-color-primary)"
-          >
-            <div className={styles.moreby}>
-              <p>More from {blog.authorName}</p>
-              <Image src={imageURL} alt="profile" height={30} width={30} />
-            </div>
-          </CustomButton>
-        </div>
-      </div>
-      <CommentSection blogId={blog?._id} user={user} comments={blog.comments} />
+      )}
+      {!preview && (
+        <CommentSection
+          blogId={blog?._id}
+          user={user}
+          comments={blog.comments}
+        />
+      )}
     </div>
   );
 }

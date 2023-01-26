@@ -65,7 +65,7 @@ export default async function handler(
     let imageName = "";
     const { saveLocally } = req.query;
     let bool = saveLocally === "true";
-    const { fields }: any = await readfile(req, bool, imageName);
+    const { fields }: any = await readfile(req, false, imageName);
     const updatedBlog = await Blogs.findOneAndUpdate({ _id: blogId }, fields, {
       new: true,
     });

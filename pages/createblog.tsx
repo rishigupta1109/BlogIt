@@ -107,7 +107,7 @@ export default function CreateBlogPage({}: Props) {
       )}
       {preview && (
         <div className={styles.previewContainer}>
-          <Blog blog={formData} />
+          <Blog preview={true} blog={formData} />
         </div>
       )}
     </div>

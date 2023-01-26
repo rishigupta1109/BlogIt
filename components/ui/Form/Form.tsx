@@ -42,13 +42,13 @@ export default function Form({ link, heading, submitHandler, fields }: Props) {
   const { darkMode } = useContext(GlobalContext);
 
   const inputChangeHandler = (e: any) => {
-    if (e.target.name === "image") {
-      setInputs((prev: any) => ({
-        ...prev,
-        [e.target.name]: e.target.files[0],
-      }));
-      return;
-    }
+    // if (e.target.name === "image") {
+    //   setInputs((prev: any) => ({
+    //     ...prev,
+    //     [e.target.name]: e.target.files[0],
+    //   }));
+    //   return;
+    // }
     setInputs((prev: any) => ({ ...prev, [e.target.name]: e.target.value }));
     // console.log(inputs);
   };
