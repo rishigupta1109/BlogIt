@@ -5,9 +5,15 @@ import notFoundImage from "../public/images/404.gif";
 import styles from "../styles/Home.module.scss";
 import Image from "next/image";
 import CustomButton from "../components/ui/CustomButton/CustomButton";
+import CustomHead from "../components/CustomHead/CustomHead";
 export default function NotFound({}: Props) {
   return (
     <div className={styles.notfound}>
+      <CustomHead
+        title="404 Not Found"
+        image={notFoundImage}
+        description="404 not found"
+      />
       <Image
         className={styles.notFoundImage}
         src={notFoundImage}
