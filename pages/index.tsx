@@ -18,7 +18,7 @@ export default function HomePage({ blogs }: { blogs: IBlog[] }) {
     <>
       <CustomHead
         title={"Featured Blogs | Blogger`s Blog"}
-        image={"/images/Blogger`s.png"}
+        image={"/public/images/Blogger`s.png"}
         description={"All the awesome blogs at one place"}
       />
       <main className={classname}>
