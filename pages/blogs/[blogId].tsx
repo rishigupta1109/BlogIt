@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Blog from "../../components/blog/blog/Blog";
 import styles from "../../styles/BlogPage.module.scss";
 import { GetServerSidePropsContext } from "next";
@@ -7,11 +7,16 @@ import { IBlog } from "../../utils/interfaces";
 import Back from "./../../components/ui/back/Back";
 import { getSession } from "next-auth/react";
 import CustomHead from "../../components/CustomHead/CustomHead";
+import { GlobalContext } from "../../store/GlobalContext";
 type Props = {
   blog: IBlog;
   hasLiked: boolean;
 };
 export default function BlogPage({ blog, hasLiked }: Props) {
+  const { setLoading } = useContext(GlobalContext);
+  useEffect(() => {
+    setLoading(false);
+  }, []);
   return (
     <div className={styles.blogContainer}>
       <CustomHead

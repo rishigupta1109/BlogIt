@@ -36,11 +36,12 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
   console.log(data);
   const tags = data.tags.split(",").map((tag) => tag.trim());
   const description = body.slice(0, 50) + "...";
-  const { darkMode } = useContext(GlobalContext);
+  const { darkMode, setLoading } = useContext(GlobalContext);
   let classname = styles.container;
   if (darkMode) classname = clsx(classname, styles.dark);
   const router = useRouter();
   const handleOpenBlog = () => {
+    setLoading(true);
     router.push(`/blogs/${_id}`);
   };
   // let previewImage: string =
