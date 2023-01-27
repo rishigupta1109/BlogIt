@@ -77,7 +77,7 @@ export default function RegisterPage({}: Props) {
     <div>
       <CustomHead
         title={"Register to Blogit"}
-        image={"/images/logowonblock.png"}
+        image={"/images/Blogger`s.png"}
         description={"Register to Blogit"}
       />
       <Form

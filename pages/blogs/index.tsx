@@ -10,6 +10,9 @@ import { featuredBlogs } from "../../utils/dummy";
 import { GetServerSidePropsContext } from "next";
 import { server } from "../../utils/config";
 import CustomHead from "../../components/CustomHead/CustomHead";
+import notavailImage from "../../public/images/not available.gif";
+import Image from "next/image";
+
 export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
   let classname = styles.homePage;
@@ -19,12 +22,22 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
     <div>
       <CustomHead
         title={"Blogs"}
-        image={"/images/logoBonW.png"}
+        image={"/images/Blogger`s.png"}
         description={"A number of awesome blogs to read from. Only on BlogIt"}
       />
       <main className={classname}>
         <h1>Blogs</h1>
-        {blogs?.length < 1 && <h2>No blogs found</h2>}
+        {blogs?.length < 1 && (
+          <div className={styles.notAvail}>
+            <Image
+              src={notavailImage}
+              alt="no blog availabe"
+              height={300}
+              width={300}
+            />
+            <h2>No Blogs Available</h2>
+          </div>
+        )}
         <BlogList isMyBlog={false} blogs={blogs} />
       </main>
     </div>

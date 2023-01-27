@@ -8,7 +8,8 @@ import { IBlog } from "../utils/interfaces";
 import { GetServerSidePropsContext } from "next";
 import { server } from "./../utils/config";
 import CustomHead from "../components/CustomHead/CustomHead";
-
+import notavailImage from "../public/images/not available.gif";
+import Image from "next/image";
 export default function HomePage({ blogs }: { blogs: IBlog[] }) {
   let classname = styles.homePage;
   const { darkMode } = useContext(GlobalContext);
@@ -17,7 +18,7 @@ export default function HomePage({ blogs }: { blogs: IBlog[] }) {
     <>
       <CustomHead
         title={"Featured Blogs"}
-        image={"/images/logoBonW.png"}
+        image={"/images/Blogger`s.png"}
         description={"All the awesome blogs at one place"}
       />
       <main className={classname}>
@@ -25,7 +26,15 @@ export default function HomePage({ blogs }: { blogs: IBlog[] }) {
         {blogs?.length > 0 ? (
           <BlogList isMyBlog={false} blogs={blogs} />
         ) : (
-          <h2>No blogs found</h2>
+          <div className={styles.notAvail}>
+            <Image
+              src={notavailImage}
+              alt="no blog availabe"
+              height={300}
+              width={300}
+            />
+            <h2>No Blogs Available</h2>
+          </div>
         )}
       </main>
     </>

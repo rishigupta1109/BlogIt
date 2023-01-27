@@ -18,6 +18,16 @@ export default function CustomHead({
 }: Props) {
   return (
     <Head>
+      <link
+        href="favicon-light.png"
+        rel="icon"
+        media="(prefers-color-scheme: light)"
+      />
+      <link
+        href="favicon-dark.png"
+        rel="icon"
+        media="(prefers-color-scheme: dark)"
+      />
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords}></meta>

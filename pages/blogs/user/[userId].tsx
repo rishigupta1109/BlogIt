@@ -44,9 +44,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (res1.status === 200) user = data.user;
     else {
       return {
-        redirect: {
-          destination: "/404",
-        },
+        notFound: true,
       };
     }
     const res2 = await fetch(`${server}/api/user/${userId}/blogs`);
@@ -55,9 +53,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   } catch (err) {
     console.log(err);
     return {
-      redirect: {
-        destination: "/404",
-      },
+      notFound: true,
     };
   }
   return {

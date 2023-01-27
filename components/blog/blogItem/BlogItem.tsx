@@ -7,7 +7,8 @@ import { IBlog } from "../../../utils/interfaces";
 import Viewer from "../../CreateBlog/Viewer";
 import Tags from "../../ui/Tags/Tags";
 import styles from "./BlogItem.module.scss";
-import viewIcon from "../../../public/images/view.svg";
+import viewIcon from "../../../public/images/icons8-eye-50.png";
+import darkViewIcon from "../../../public/images/icons8-eye-50white.png";
 import CustomButton from "../../ui/CustomButton/CustomButton";
 import editIcon from "../../../public/images/edit_icon.svg";
 import deleteIcon from "../../../public/images/delete.svg";
@@ -49,9 +50,7 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
   let previewImage: string = image;
   if (previewImage === "") previewImage = "/images/loading3.gif";
   const imageURL =
-    authorAvatar !== "profile.jpg"
-      ? authorAvatar
-      : "https://icon2.cleanpng.com/20180715/zwr/kisspng-real-estate-profile-picture-icon-5b4c1135ceddd7.2742655015317117978473.jpg";
+    authorAvatar !== "profile.jpg" ? authorAvatar : "/user/profile.jpg";
   return (
     <div className={classname} onClick={handleOpenBlog}>
       <Image
@@ -76,7 +75,12 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
           </div>
         </div>
         <span>
-          <Image src={viewIcon} alt={"view"} height={20} width={20} />
+          <Image
+            src={darkMode ? darkViewIcon : viewIcon}
+            alt={"view"}
+            height={20}
+            width={20}
+          />
           {views}
         </span>
       </div>

@@ -13,6 +13,8 @@ import { server } from "../../utils/config";
 import CustomButton from "../../components/ui/CustomButton/CustomButton";
 import Loader from "../../components/ui/Loader/Loader";
 import CustomHead from "./../../components/CustomHead/CustomHead";
+import Image from "next/image";
+import notavailImage from "../../public/images/writeOne.gif";
 
 export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
@@ -36,7 +38,7 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
       <main className={classname}>
         <CustomHead
           title={"Your Blogs"}
-          image={"/images/logoBonW.png"}
+          image={"/images/Blogger`s.png"}
           description={"Collection of blogs by You"}
           author={"YOU"}
         />
@@ -45,11 +47,19 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
           <BlogList setBlogs={setBlogsData} isMyBlog={true} blogs={blogsData} />
         ) : (
           <div>
-            <h2>No Blogs Found</h2>
+            <div className={styles.notAvail}>
+              <Image
+                src={notavailImage}
+                alt="no blog availabe"
+                height={300}
+                width={300}
+              />
+              <h2>Write Your First Blog Now.</h2>
+            </div>
             <CustomButton
               bg="var(--dark-color-primary)"
               corner="6px"
-              label="Write One"
+              label="Write a Blog"
               link="/createblog"
               textColor="white"
               hoverTextColor="white"

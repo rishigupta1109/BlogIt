@@ -14,7 +14,8 @@
     left:40vw;
     transform:translate(-50%,-50%);
     border-radius: 6px;
-    
+    border: 1px solid $dark-color-ternary;
+    box-shadow: 6px 6px 5px $light-color-primary ;
     min-height: 250px;
     min-width: 250px;
     div{

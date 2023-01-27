@@ -1,8 +1,8 @@
 import React from "react";
-import LogoBW from "../../../public/images/logoBonW.png";
-import LogoWB from "../../../public/images/logowonblock.png";
-import LogoWBtransparent from "../../../public/images/logowonblock-removebg.png";
-import LogoBWtransparent from "../../../public/images/logoBonW-removebg.png";
+import LogoBW from "../../../public/images/Blogger`s.png";
+import LogoWB from "../../../public/images/Blogger`s (1).png";
+import LogoWBtransparent from "../../../public/images/Blogger_s__1_-removebg-preview.png";
+import LogoBWtransparent from "../../../public/images/Blogger_s-removebg-preview.png";
 import Image from "next/image";
 type Props = {
   black?: boolean;
@@ -21,9 +21,9 @@ export default function Logo({ black, transparent }: Props) {
   return (
     <Image
       src={source}
-      style={{ objectFit: "contain" }}
+      style={{ objectFit: "cover" }}
       alt="logo"
-      height={60}
+      height={80}
       width={150}
     />
   );

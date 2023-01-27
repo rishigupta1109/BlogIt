@@ -30,8 +30,10 @@ export default function Modal({ text, onYes, onNo, show }: Props) {
           }}
           label="Yes"
           corner="6px"
+          border="0"
         />
         <CustomButton
+          border="0"
           textColor="var(--dark-color-primary)"
           bg="white"
           hoverbg="var(--dark-color-primary)"

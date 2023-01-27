@@ -29,8 +29,8 @@
     box-shadow: 5px 5px 25px $light-color-primary;
 }
 .container.dark{
-    box-shadow: 5px 5px 15px $dark-color-ternary;
-    background-color: $dark-color-secondary;
+    box-shadow: none;
+    background-color: $dark-color-primary;
     h3 {
             color: white;
         }
@@ -38,6 +38,11 @@
             p{
                 color:$light-color;
             }
+        }
+        &:hover{
+            transform: translate(0, -5px);
+                transform: scale(1.05);
+            box-shadow: 0px 0px 25px $light-color-primary;
         }
 }
 

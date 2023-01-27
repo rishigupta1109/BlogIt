@@ -8,6 +8,7 @@ const nextConfig = {
   },
   env: {
     MONGODB_URL: process.env.MONGODB_URL,
+    SERVER_URI: process.env.SERVER_URI,
   },
   typescript: {
     // !! WARN !!

@@ -42,9 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <IKContext
         publicKey={publicKey}
         urlEndpoint={urlEndpoint}
-        authenticationEndpoint={
-          "https://blog-it-kohl.vercel.app/api/auth/imagekit-auth"
-        }
+        authenticationEndpoint={`${process.env.NEXT_PUBLIC_SERVER_URI}/api/auth/imagekit-auth`}
       >
         <SessionProvider session={pageProps.session}>
           <GlobalContextProvider>

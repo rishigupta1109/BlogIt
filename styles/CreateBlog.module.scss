@@ -46,4 +46,7 @@
         align-items: center;
         gap: 20px;
         background-color: $light-color;
+        @media screen and (max-width:500px) {
+            width: 100vw;
+        }
 }

@@ -22,7 +22,8 @@ export default function UserProfile({
   height = "85vh",
 }: Props) {
   const { darkMode } = useContext(GlobalContext);
-  if (avatar === undefined || avatar === "") avatar = "/user/profile.jpg";
+  if (avatar === undefined || avatar === "" || avatar === "profile.jpg")
+    avatar = "/user/profile.jpg";
   return (
     <div
       className={

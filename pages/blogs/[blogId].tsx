@@ -45,10 +45,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (res.status === 200) blog = data.blog;
     else {
       return {
-        redirect: {
-          destination: "/",
-          permanent: false,
-        },
+        notFound: true,
       };
     }
     if (!session) return { props: { blog, hasLiked, isLoggedIn } };

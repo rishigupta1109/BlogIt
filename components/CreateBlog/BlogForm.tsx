@@ -75,7 +75,8 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
         />
         <CustomButton
           type="outlined"
-          border="none"
+          border="1px solid var(--dark-color-primary)"
+          bg="transparent"
           corner="6px"
           textColor="black"
           hoverbg="var(--dark-color-ternary)"
@@ -110,12 +111,16 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
           type="filled"
           corner="6px"
           label="Publish"
-          bg="var(--light-color-primary)"
+          bg={
+            darkMode
+              ? "var(--dark-color-secondary)"
+              : "var(--light-color-primary)"
+          }
           border="0"
-          hoverbg="var(--dark-color-ternary)"
+          hoverbg="var(--dark-color-primary)"
           textColor="white"
         />
-        <CustomButton
+        {/* <CustomButton
           type="outlined"
           corner="6px"
           border="1px solid var(--dark-color-primary)"
@@ -124,7 +129,7 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
           bg="white"
           textColor="black"
           hoverTextColor="white"
-        />
+        /> */}
       </div>
     </form>
   );

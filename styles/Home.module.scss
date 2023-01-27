@@ -1,8 +1,29 @@
 @import './globals.scss';
 
 .homePage{
-    min-height: 55vh;
+    min-height: 85vh;
     @extend .column;
     justify-content: baseline;
     align-items: center;
+}
+.notFoundImage{
+    height:300px;
+    width: 300px;
+    border-radius: 100%;
+}
+.notfound{
+    text-align: center;
+    @extend .column;
+    justify-content: center;
+    align-items: center;
+}
+.notAvail{
+    margin-top: 50px;
+    @extend .column;
+        justify-content: center;
+        align-items: center;
+        gap:25px;
+        img{
+            border-radius: 100%;
+        }
 }

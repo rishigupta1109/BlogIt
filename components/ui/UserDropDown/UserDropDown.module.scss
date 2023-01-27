@@ -69,10 +69,11 @@
             background-color: $dark-color-ternary;
         }
     .dropdown{
-        background: var(--dark-color-ternary);
+        box-shadow: 3px 3px 20px $light-color-primary;
+        background: var(--dark-color-secondary);
         span{
             &:not(:first-child):hover{
-                background-color: $dark-color-secondary;
+                background-color: $dark-color-primary;
             }
         }
     }

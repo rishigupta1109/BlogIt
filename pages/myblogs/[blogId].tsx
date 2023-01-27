@@ -130,7 +130,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         },
       };
     }
-    if (!blogId) throw new Error("No Blog Id Found");
+    if (!blogId) {
+      return {
+        notFound: true,
+      };
+    }
     const res = await getBlogDetails(blogId);
     console.log(res);
     if (res.status != 200) throw new Error(res.message);
