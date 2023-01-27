@@ -17,7 +17,7 @@ export default function HomePage({ blogs }: { blogs: IBlog[] }) {
   return (
     <>
       <CustomHead
-        title={"Featured Blogs"}
+        title={"Featured Blogs | Blogger`s Blog"}
         image={"/images/Blogger`s.png"}
         description={"All the awesome blogs at one place"}
       />

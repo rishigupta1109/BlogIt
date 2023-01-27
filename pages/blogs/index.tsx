@@ -21,9 +21,11 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   return (
     <div>
       <CustomHead
-        title={"Blogs"}
+        title={"Blogs | Blogger`s Blog"}
         image={"/images/Blogger`s.png"}
-        description={"A number of awesome blogs to read from. Only on BlogIt"}
+        description={
+          "A number of awesome blogs to read from. Only on Blogger`s Blog"
+        }
       />
       <main className={classname}>
         <h1>Blogs</h1>

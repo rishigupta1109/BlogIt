@@ -79,7 +79,7 @@ export default function CreateBlogPage({}: Props) {
       }
     >
       <CustomHead
-        title={"Create Blog"}
+        title={"Create Blog | Blogger`s Blog"}
         image={user.avatar}
         description={"Create a new blog here."}
         author={user.name}
