@@ -62,7 +62,6 @@ export default function LoginPage({}: Props) {
     <div>
       <CustomHead
         title={"Login to Blogger`s Blog"}
-        image={"/images/Blogger`s.png"}
         description={"Login to Blogger`s Blog"}
       />
       <Form

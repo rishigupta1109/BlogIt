@@ -6,7 +6,7 @@ type Props = {
   keywords?: string;
   author?: string;
   description: string;
-  image: any;
+  image?: any;
 };
 
 export default function CustomHead({
@@ -14,7 +14,7 @@ export default function CustomHead({
   keywords,
   author = "RISHI GUPTA",
   description,
-  image,
+  image = "https://ik.imagekit.io/avy76kxdy/Blogger_s.png?ik-sdk-version=javascript-1.4.3&updatedAt=1674816607818",
 }: Props) {
   return (
     <Head>

@@ -38,7 +38,6 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
       <main className={classname}>
         <CustomHead
           title={"Your Blogs | Blogger`s Blog"}
-          image={"/images/Blogger`s.png"}
           description={"Collection of blogs by You"}
           author={"YOU"}
         />

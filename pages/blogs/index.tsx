@@ -22,7 +22,6 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
     <div>
       <CustomHead
         title={"Blogs | Blogger`s Blog"}
-        image={"/images/Blogger`s.png"}
         description={
           "A number of awesome blogs to read from. Only on Blogger`s Blog"
         }
