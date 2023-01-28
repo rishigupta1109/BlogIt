@@ -3,13 +3,19 @@ import React, { useContext } from "react";
 import styles from "./ModeToggle.module.scss";
 import { GlobalContext } from "./../../../store/GlobalContext";
 export default function ModeToggle() {
-  const { setDarkMode } = useContext(GlobalContext);
+  const { setDarkMode, darkMode } = useContext(GlobalContext);
   const changeHandler = (e: any) => {
     setDarkMode(e.target.checked);
+    localStorage.setItem("darkMode", e.target.checked.toString());
   };
   return (
     <div className={styles.toggler}>
-      <input type="checkbox" id="darkmode-toggle" onChange={changeHandler} />
+      <input
+        type="checkbox"
+        id="darkmode-toggle"
+        checked={darkMode}
+        onChange={changeHandler}
+      />
       <label htmlFor="darkmode-toggle">
         <svg
           version="1.1"

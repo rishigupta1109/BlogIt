@@ -25,6 +25,7 @@ html,body{
     font-weight: 400;
     position: sticky;
     transition: all 500ms ease;
-    top:-60px;
+    top:0px;
+    background-color: #EEF1FF;
     z-index: 5;
 }

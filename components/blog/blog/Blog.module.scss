@@ -1,165 +1,163 @@
-@import '../../../styles/globals';
-.container{
-        background-color: $light-color-ternary;
-        min-height:85vh;
-        width:100%;
-        min-width: 60vw;
-        .image{
-            width: 100%;
-            height: 50vh;
-            object-fit: cover;
-        }
-        .content{
-            padding:1rem 4rem;
-            .details{
-                width: 100%;
-                @extend .row;
-                justify-content:space-between;
-                align-items: center;
-            }
-            .title{
-                font-size: 3rem;
-                font-weight: 700;
-                margin-bottom: 0.5rem;
-            }
-            p{
-                font-size: 20px;
-            }
-        }
+@import "../../../styles/globals";
+.container {
+  background-color: $light-color-ternary;
+  min-height: 85vh;
+  width: 100%;
+  min-width: 60vw;
+  .image {
+    width: 100%;
+    height: 50vh;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+  }
+  .content {
+    padding: 1rem 4rem;
+    .details {
+      width: 100%;
+      @extend .row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 20px;
+    }
+  }
 }
-.container.dark{
-    color:$dark-color-primary;
+.container.dark {
+  color: $dark-color-primary;
 }
 .info {
-    width: 100%;
-    @extend .row;
-    margin-top: 15px;
-    justify-content: baseline;
-    gap: 15px;
-    align-items: center;
+  width: 100%;
+  @extend .row;
+  margin-top: 15px;
+  justify-content: baseline;
+  gap: 15px;
+  align-items: center;
 
-    div {
-        @extend .column;
+  div {
+    @extend .column;
 
-        p {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        time {
-            font-size: 14px;
-            font-weight: 400;
-        }
+    p {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
     }
+
+    time {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
 }
 
-.moreblogs{
-    
+.moreblogs {
+  @extend .row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  padding: 1rem 4rem;
+  @media screen and (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .likecontainer {
+    @extend .row;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    img {
+      cursor: pointer;
+    }
+    .like {
+      transition: 500ms ease;
+    }
+    .like:hover {
+      transform: scale(1.1);
+    }
+  }
+  .moreby {
+    @extend .row;
+    align-items: center;
+    gap: 15px;
+  }
+}
+.comment_section {
+  padding: 1rem 4rem;
+  @extend .column;
+  justify-content: space-between;
+  align-items: baseline;
+  .input_container {
     @extend .row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-    padding:1rem 4rem;
-    @media  screen and (max-width:500px) {
-        display: flex;
-        flex-direction: column;
-        gap:20px;
+    width: 100%;
+    input {
+      width: 100%;
+      padding: 15px;
+      border-radius: 6px;
+      outline: none;
+      border: none;
+      font-size: 16px;
+      color: $dark-color-primary;
+      box-shadow: 2px 2px 2px $light-color-primary;
     }
-    .likecontainer{
-        @extend .row;
-        justify-content: center;
-        align-items: center;
-        gap:15px;
-        img{
-            cursor: pointer;
-        }
-        .like{
-            transition:500ms ease;
-        }
-        .like:hover{
-            transform: scale(1.1);
-
-        }
-    }
-    .moreby{
-       @extend .row;
-       align-items: center;
-       gap:15px;
-    }
-}
-.comment_section{
-  
-    padding: 1rem 4rem;
+  }
+  .comment_container {
+    width: 100%;
     @extend .column;
     justify-content: space-between;
-    align-items: baseline;
-    .input_container{
+    max-height: 500px;
+    overflow: auto;
+    gap: 15px;
+    padding-top: 15px;
+    .comment {
+      padding: 5px 15px;
+      div {
         @extend .row;
         justify-content: space-between;
-        align-items: center;
-        width:100%;
-        input{
-            width: 100%;
-            padding: 15px;
-            border-radius: 6px;
-            outline: none;
-            border: none;
-            font-size: 16px;
-            color:$dark-color-primary;
-            box-shadow: 2px 2px 2px $light-color-primary;
-        }
+        font-size: 14px;
+        font-weight: 400;
+        margin: 5px 0;
+      }
+      h4 {
+        margin: 5px 0;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      background-color: white;
     }
-    .comment_container{
-        width:100%;
-        @extend .column;
-        justify-content: space-between;
-        max-height:500px;
-        overflow:auto;
-        gap:15px;
-        padding-top: 15px;
-        .comment{
-            padding:5px 15px;
-            div{
-                @extend .row;
-                justify-content: space-between;
-                font-size: 14px;
-                font-weight: 400;
-                margin: 5px 0;
-            }
-            h4{
-                margin: 5px 0;
-                font-size: 16px;
-                font-weight: 600;
-            }
-            background-color: white;
-        }
-    }
+  }
 }
-@media screen and (max-width:700px) {
-    .title{
-        font-size: 2rem !important;
-    }
-    .content{
-        padding: 1rem 2rem !important;
-    }
+@media screen and (max-width: 700px) {
+  .title {
+    font-size: 2rem !important;
+  }
+  .content {
+    padding: 1rem 2rem !important;
+  }
 }
-.fakeMessage{
-    width:80%;
-    height:30px;
-    background-color: $light-color-primary;
-    border-radius: 6px;
-    animation: opacityPendulum 1s infinite;
+.fakeMessage {
+  width: 80%;
+  height: 30px;
+  background-color: $light-color-primary;
+  border-radius: 6px;
+  animation: opacityPendulum 1s infinite;
 }
-@keyframes opacityPendulum{
-    0%{
-        opacity: 0.5;
-    }
-    50%{
-        opacity: 1;
-    }
-    100%{
-        opacity: 0.5;
-    }
+@keyframes opacityPendulum {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }

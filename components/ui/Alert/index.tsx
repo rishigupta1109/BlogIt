@@ -2,6 +2,10 @@ import React from "react";
 import styles from "./Alert.module.scss";
 import CustomButton from "./../CustomButton/CustomButton";
 import closeButton from "../../../public/icons/icons8-close.svg";
+import successIcon from "../../../public/icons/success-svgrepo-com.svg";
+import errorIcon from "../../../public/icons/error-svgrepo-com.svg";
+import warningIcon from "../../../public/icons/warning-svgrepo-com.svg";
+import Image from "next/image";
 export interface IAlertProps {
   id: string;
   message: string;
@@ -24,6 +28,18 @@ function getBgColor(type: string) {
       return "lightblue";
   }
 }
+function getIcon(type: string) {
+  switch (type) {
+    case "success":
+      return successIcon;
+    case "error":
+      return errorIcon;
+    case "warning":
+      return warningIcon;
+    default:
+      return warningIcon;
+  }
+}
 const Alert: React.FC<IAlertProps> = ({
   id,
   message,
@@ -34,15 +50,19 @@ const Alert: React.FC<IAlertProps> = ({
   const bgcolor = getBgColor(type);
   console.log(bgcolor);
   return (
-    <div className={styles.alert} style={{ backgroundColor: bgcolor }}>
+    <div className={styles.alert}>
       <div>
-        <p>{message}</p>
+        <span>
+          <Image src={getIcon(type)} height={30} width={30} alt="text" />
+          <p style={{ marginLeft: "10px" }}>{message}</p>
+        </span>
         {!autoClose && (
           <CustomButton
             type="filled"
             bg="transparent"
             hoverbg="transparent"
             boxShadow="0px 0px 0px 0px transparent"
+            corner="100%"
             src={closeButton}
             onClick={() => {
               onClose(id);

@@ -12,6 +12,7 @@ import { server } from "../../utils/config";
 import CustomHead from "../../components/CustomHead/CustomHead";
 import notavailImage from "../../public/images/not available.gif";
 import Image from "next/image";
+import SearchBar from "../../components/seachbar/SearchBar";
 
 export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   console.log(blogs);
@@ -28,6 +29,7 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
       />
       <main className={classname}>
         <h1>Blogs</h1>
+
         {blogs?.length < 1 && (
           <div className={styles.notAvail}>
             <Image

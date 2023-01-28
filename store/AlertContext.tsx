@@ -118,6 +118,7 @@ const AlertContextProvider: React.FC<AlertContextProviderProps> = ({
           top: "30px",
           left: "50%",
           transform: "translateX(-50%)",
+          zIndex: 100,
         }}
       >
         {Alerts?.length !== 0 &&

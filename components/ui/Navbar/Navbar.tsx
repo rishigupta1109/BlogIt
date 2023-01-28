@@ -9,6 +9,7 @@ import ModeToggle from "../ModeToggleButton/ModeToggle";
 import UserDropDown from "../UserDropDown/UserDropDown";
 import styles from "./Navbar.module.scss";
 import { useSession, signOut } from "next-auth/react";
+import SearchBar from "./../../seachbar/SearchBar";
 type Props = {};
 
 export default function Navbar({}: Props) {
@@ -73,8 +74,10 @@ function NavLinks({ darkMode, pathname }: INavLinks) {
           </Link>
         )}
       </li>
+      <li></li>
 
       <li>
+        <SearchBar />
         {!authenticated && !loading && (
           <CustomButton
             hoverbg={
@@ -247,6 +250,9 @@ function MobileNavLinks({ darkMode, pathname }: IMobileNavLinks) {
           )}
           <li>
             <ModeToggle />
+          </li>
+          <li>
+            <SearchBar />
           </li>
         </ul>
       )}

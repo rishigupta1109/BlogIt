@@ -10,9 +10,11 @@ import { server } from "./../utils/config";
 import CustomHead from "../components/CustomHead/CustomHead";
 import notavailImage from "../public/images/not available.gif";
 import Image from "next/image";
+import { AlertContext } from "../store/AlertContext";
 export default function HomePage({ blogs }: { blogs: IBlog[] }) {
   let classname = styles.homePage;
   const { darkMode } = useContext(GlobalContext);
+  const { Message } = useContext(AlertContext);
   if (darkMode) classname = clsx(styles.homePage, styles.dark);
   return (
     <>

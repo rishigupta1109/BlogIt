@@ -46,6 +46,8 @@ export function GlobalContextProvider({
     }
   }, [session]);
   useEffect(() => {
+    if (localStorage.getItem("darkMode") === "true") setDarkMode(true);
+    else setDarkMode(false);
     getSession()
       .then((session) => setSession(session))
       .catch((err) => console.log(err));
@@ -63,7 +65,7 @@ export function GlobalContextProvider({
         setShowMobileMenu,
         user,
         setUser,
-        setSession
+        setSession,
       }}
     >
       {children}
