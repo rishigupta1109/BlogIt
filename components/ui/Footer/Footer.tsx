@@ -12,10 +12,7 @@ export default function Footer({}: Props) {
     <div
       className={darkMode ? clsx(styles.footer, styles.dark) : styles.footer}
     >
-      <div
-        className={styles.row}
-        style={{ alignItems: "center", marginBottom: "35px" }}
-      >
+      <div className={styles.row} style={{ alignItems: "center" }}>
         <Image
           className={styles.mailicon}
           alt="mailicon"
@@ -23,12 +20,9 @@ export default function Footer({}: Props) {
           src={mailIcon}
         ></Image>
 
-        <a href="mailto:thebookbajaar@gmail.com">blogIt@gmail.com</a>
+        <a href="mailto:thebookbajaar@gmail.com">Blogger`s Blog</a>
       </div>
-      <div
-        className="row"
-        style={{ alignItems: "center", marginBottom: "35px" }}
-      >
+      <div className="row" style={{ alignItems: "center" }}>
         Developed by :{"  "}
         <a
           target="_blank"
@@ -41,7 +35,7 @@ export default function Footer({}: Props) {
         </a>
       </div>
       <div className="row">
-        &copy; Copyright 2023 -<b> BlogIt!</b>{" "}
+        &copy; Copyright 2023 -<b> Blogger`s Blog!</b>{" "}
       </div>
     </div>
   );

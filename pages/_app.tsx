@@ -8,6 +8,9 @@ import localFont from "@next/font/local";
 import AlertContextProvider from "../store/AlertContext";
 import { SessionProvider } from "next-auth/react";
 import { IKContext } from "imagekitio-react";
+import { useRouter } from "next/router";
+import { Suspense, useEffect, useState } from "react";
+import Loader from "../components/ui/Loader/Loader";
 
 // Font files can be colocated inside of `pages`
 const myFont = localFont({
@@ -34,6 +37,7 @@ const myFont = localFont({
     },
   ],
 });
+
 export default function App({ Component, pageProps }: AppProps) {
   const publicKey = "public_+pZA5vBl6tmNYnxYgMer/JCMlQk=";
   const urlEndpoint = "https://ik.imagekit.io/avy76kxdy";
@@ -48,8 +52,8 @@ export default function App({ Component, pageProps }: AppProps) {
           <GlobalContextProvider>
             <Layout>
               <AlertContextProvider>
+                  <Component {...pageProps} />
                 {/* ...child components */}
-                <Component {...pageProps} />
               </AlertContextProvider>
             </Layout>
           </GlobalContextProvider>

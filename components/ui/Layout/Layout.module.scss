@@ -1,14 +1,14 @@
-@import '../../../styles/globals';
-.layout{
-    @extend .column;
-    min-height:100vh;
-    height: 100%;
-    background-color: $light-color;
-    color:$dark-color-primary;
-    justify-content: space-between;
-    overflow: hidden;
+@import "../../../styles/globals";
+.layout {
+  @extend .column;
+  min-height: 100vh;
+  height: 100%;
+  background-color: $light-color;
+  color: black;
+  justify-content: space-between;
+  overflow: hidden;
 }
-.layout.dark{
-    background-color: $dark-color;
-    color: $light-color;
+.layout.dark {
+  background-color: $dark-color;
+  color: $light-color;
 }

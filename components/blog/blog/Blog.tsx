@@ -92,9 +92,15 @@ export default function Blog({ blog, hasLiked, preview }: Props) {
       )}
       <div className={styles.content}>
         <div className={styles.info}>
-          <Image src={imageURL} alt="profile" height={30} width={30} />
+          <Image
+            src={imageURL}
+            alt="profile"
+            className={styles.avatar}
+            height={30}
+            width={30}
+          />
           <div>
-            <p>{blog?.authorName}</p>
+            <p style={{ textTransform: "capitalize" }}>{blog?.authorName}</p>
             <time>{new Date(blog?.createdAt).toDateString()}</time>
           </div>
         </div>
@@ -139,7 +145,13 @@ export default function Blog({ blog, hasLiked, preview }: Props) {
             >
               <div className={styles.moreby}>
                 <p>More from {blog.authorName}</p>
-                <Image src={imageURL} alt="profile" height={30} width={30} />
+                <Image
+                  src={imageURL}
+                  alt="profile"
+                  className={styles.avatar}
+                  height={30}
+                  width={30}
+                />
               </div>
             </CustomButton>
           </div>
@@ -221,7 +233,7 @@ const CommentSection = ({
           ))
         ) : (
           <div style={{ textAlign: "center" }}>
-            <h3>Be the first to comment</h3>
+            <h3>Be the first one to comment</h3>
           </div>
         )}
       </div>

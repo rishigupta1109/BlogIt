@@ -1,32 +1,38 @@
 @import "../../../styles/globals.scss";
 .footer {
-    @extend .column;
-    margin-top: 25px;
-    justify-content: center;
-    align-items: center;
-    font-size: large;
-    padding: 35px;
-    background-color: $light-color-ternary;
-    .name,a{
-        color:$dark-color-primary;
-        font-weight: 600;
-        font-size: 20px;
-    }
+  @extend .row;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 16px;
+  padding: 35px;
+  background-color: $light-color-ternary;
+  .name,
+  a {
+    text-decoration: none;
+    color: $dark-color-primary;
+    font-weight: 600;
+    font-size: 16px;
+  }
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
-.footer.dark{
-    background-color: $dark-color-primary;
-    color:white;
-    a{
-        color: white;
-    }
+.footer.dark {
+  background-color: $dark-color-primary;
+  color: white;
+  a {
+    color: white;
+  }
 }
 .footer-logo {
-    height: 80px;
-    border-radius: 100%;
-    cursor: pointer;
+  height: 80px;
+  border-radius: 100%;
+  cursor: pointer;
 }
 
 .mailicon {
-    height: 25px;
-    width: 25px;
+  height: 25px;
+  width: 25px;
 }

@@ -23,7 +23,9 @@ export default function HomePage({ blogs }: { blogs: IBlog[] }) {
         description={"All the awesome blogs at one place"}
       />
       <main className={classname}>
-        <h1>Featured Blogs</h1>
+        <h1 style={{ alignSelf: "flex-start", marginLeft: "9.3rem" }}>
+          Featured Blogs
+        </h1>
         {blogs?.length > 0 ? (
           <BlogList isMyBlog={false} blogs={blogs} />
         ) : (

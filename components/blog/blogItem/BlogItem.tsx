@@ -11,7 +11,9 @@ import viewIcon from "../../../public/images/icons8-eye-50.png";
 import darkViewIcon from "../../../public/images/icons8-eye-50white.png";
 import CustomButton from "../../ui/CustomButton/CustomButton";
 import editIcon from "../../../public/images/edit_icon.svg";
+import editLightIcon from "../../../public/images/edit-light.svg";
 import deleteIcon from "../../../public/images/delete.svg";
+import deleteLightIcon from "../../../public/images/delete-light.svg";
 import { deleteBlog } from "../../../utils/services";
 import { AlertContext } from "./../../../store/AlertContext";
 import Modal from "../../Modal/Modal";
@@ -71,7 +73,7 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
             width={30}
           />
           <div>
-            <p>{authorName}</p>
+            <p style={{ textTransform: "capitalize" }}>{authorName}</p>
             <time>{new Date(createdAt).toDateString()}</time>
           </div>
         </div>
@@ -105,7 +107,7 @@ const AuthorButtons = ({
   setBlogs?: React.Dispatch<React.SetStateAction<IBlog[]>>;
 }) => {
   const { Message } = useContext(AlertContext);
-  const { setLoading } = useContext(GlobalContext);
+  const { setLoading, darkMode } = useContext(GlobalContext);
   const [showModal, setShowModal] = React.useState(false);
   const deleteBlogHandler = async (id: string) => {
     setLoading(true);
@@ -146,7 +148,12 @@ const AuthorButtons = ({
         }}
         link={`/myblogs/${id}`}
       >
-        <Image src={editIcon} alt="edit" height={20} width={20} />
+        <Image
+          src={darkMode ? editLightIcon : editIcon}
+          alt="edit"
+          height={20}
+          width={20}
+        />
       </CustomButton>
       <CustomButton
         padding="10px"
@@ -160,7 +167,12 @@ const AuthorButtons = ({
           setShowModal(true);
         }}
       >
-        <Image src={deleteIcon} alt="delete" height={20} width={20} />
+        <Image
+          src={darkMode ? deleteLightIcon : deleteIcon}
+          alt="delete"
+          height={20}
+          width={20}
+        />
       </CustomButton>
     </div>
   );

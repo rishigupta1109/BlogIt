@@ -13,15 +13,23 @@ export default function SearchBar({}: Props) {
   const router = useRouter();
   return (
     <div className={styles.container}>
-      <input
-        type="text"
-        list="blogs"
-        placeholder="Search"
-        onChange={(e) => {
-          setPattern(e.target.value);
+      <form
+        className={styles.form}
+        onSubmit={(e) => {
+          e.preventDefault();
+          router.push(`/blogs/search/${pattern}`);
         }}
-      />
-      {/* <datalist id="blogs">
+      >
+        <input
+          type="text"
+          list="blogs"
+          placeholder="Search"
+          required={true}
+          onChange={(e) => {
+            setPattern(e.target.value);
+          }}
+        />
+        {/* <datalist id="blogs">
         <option value="Chrome" />
         <option value="Firefox" />
         <option value="Internet Explorer" />
@@ -29,18 +37,22 @@ export default function SearchBar({}: Props) {
         <option value="Safari" />
         <option value="Microsoft Edge" />
       </datalist> */}
-      <Image
-        onClick={() => router.push("/blogs/search/" + pattern)}
-        src={darkMode ? searchIconWhite : searchIconBlack}
-        height={25}
-        width={25}
-        alt="search"
-        style={{
-          background: darkMode
-            ? "var(--dark-color-primary)"
-            : "var(--light-color-ternary)",
-        }}
-      />
+        <button
+          type="submit"
+          style={{
+            background: darkMode
+              ? "var(--dark-color-primary)"
+              : "var(--light-color-ternary)",
+          }}
+        >
+          <Image
+            src={darkMode ? searchIconWhite : searchIconBlack}
+            height={25}
+            width={25}
+            alt="search"
+          />
+        </button>
+      </form>
     </div>
   );
 }

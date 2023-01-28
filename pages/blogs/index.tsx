@@ -22,13 +22,15 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   return (
     <div>
       <CustomHead
-        title={"Blogs | Blogger`s Blog"}
+        title={"All Blogs | Blogger`s Blog"}
         description={
           "A number of awesome blogs to read from. Only on Blogger`s Blog"
         }
       />
       <main className={classname}>
-        <h1>Blogs</h1>
+        <h1 style={{ alignSelf: "flex-start", marginLeft: "9.3rem" }}>
+          All Blogs
+        </h1>
 
         {blogs?.length < 1 && (
           <div className={styles.notAvail}>

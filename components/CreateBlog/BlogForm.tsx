@@ -75,7 +75,7 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
         />
         <CustomButton
           type="outlined"
-          border="1px solid var(--dark-color-primary)"
+          border="1px solid #00000040"
           bg="transparent"
           corner="6px"
           textColor="black"

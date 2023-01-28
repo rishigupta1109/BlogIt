@@ -10,6 +10,9 @@
     object-fit: contain;
     mix-blend-mode: multiply;
   }
+  time {
+    color: #00000080;
+  }
   .content {
     padding: 1rem 4rem;
     .details {
@@ -160,4 +163,7 @@
   100% {
     opacity: 0.5;
   }
+}
+.avatar {
+  border-radius: 100%;
 }
