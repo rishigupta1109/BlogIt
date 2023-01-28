@@ -1,44 +1,54 @@
 @import "../../../styles/globals.scss";
 
-.container{
-    width: 100%;
-    padding: 10px;
-    margin: 10px;
-    @extend .row;
+.container {
+  width: 100%;
+  padding: 10px;
+  margin: 10px;
+  @extend .row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 15px;
+  .subContainer {
+    @extend .column;
     justify-content: space-between;
-    align-items: center;
-    font-size: 15px;
-    .subContainer{
-        @extend .column;
-        justify-content: space-between;
-        align-items: baseline;
-        position: relative;
-        .rowContainer {
-            display: flex;
-            flex-direction: row !important;
-            justify-content: space-between;
-            align-items: center;
-            img{
-                height:45px;
-                width:45px;
-                border-radius: 100%;
-                margin: 0 10px;
-            }
-        }
-        input{
-            font-size: 15px;
-            padding: 10px 20px;
-            outline: none;
-            border-radius: 3px;
-            border: none;
-            background-color: $light-color-ternary;
-            box-shadow: 2px 2px 2px $light-color-primary;
-        }
-        .error{
-            position: absolute;
-            top:32px;
-            color: red;
-            font-size: 12px;
-        }
+    align-items: baseline;
+    position: relative;
+    .rowContainer {
+      display: flex;
+      flex-direction: row !important;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        height: 45px;
+        width: 45px;
+        border-radius: 100%;
+        margin: 0 10px;
+      }
     }
+    input {
+      font-size: 15px;
+      padding: 10px 20px;
+      outline: none;
+      border-radius: 3px;
+      border: none;
+      background-color: $light-color-ternary;
+      box-shadow: 2px 2px 2px $light-color-primary;
+    }
+    .error {
+      position: absolute;
+      top: 32px;
+      color: red;
+      font-size: 12px;
+    }
+  }
+}
+.showPassword {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  img {
+    height: 20px;
+    width: 20px;
+  }
 }

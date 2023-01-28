@@ -1,7 +1,7 @@
 @import "./globals.scss";
 
 .homePage {
-  min-height: 90vh;
+  min-height: 100vh;
   @extend .column;
   justify-content: baseline;
   align-items: center;
@@ -25,5 +25,13 @@
   gap: 25px;
   img {
     border-radius: 100%;
+  }
+}
+.heading {
+  align-self: baseline;
+  margin-left: 9.3rem;
+  @media screen and (max-width: 500px) {
+    margin-left: 0;
+    align-self: center;
   }
 }

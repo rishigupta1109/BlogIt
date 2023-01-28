@@ -28,9 +28,7 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
         }
       />
       <main className={classname}>
-        <h1 style={{ alignSelf: "flex-start", marginLeft: "9.3rem" }}>
-          All Blogs
-        </h1>
+        <h1 className={styles.heading}>All Blogs</h1>
 
         {blogs?.length < 1 && (
           <div className={styles.notAvail}>

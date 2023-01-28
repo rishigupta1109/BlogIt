@@ -23,6 +23,20 @@
       font-size: 16px;
     }
   }
+  @media screen and (max-width: 400px) {
+    h3 {
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 16px !important;
+    }
+    p {
+      font-size: 14px !important;
+    }
+    time {
+      font-size: 12px !important;
+    }
+  }
   time {
     color: #00000080;
   }
@@ -104,6 +118,11 @@
     align-items: center;
     gap: 10px;
     margin-right: 25px;
+  }
+  @media screen and (max-width: 400px) {
+    span {
+      font-size: 12px !important;
+    }
   }
 }
 @keyframes slideup {

@@ -41,9 +41,7 @@ export default function MyBlogsPage({ blogs }: { blogs: IBlog[] }) {
           description={"Collection of blogs by You"}
           author={"YOU"}
         />
-        <h1 style={{ alignSelf: "flex-start", marginLeft: "9.3rem" }}>
-          Your Blogs
-        </h1>
+        <h1 className={styles.heading}>Your Blogs</h1>
         {blogsData?.length > 0 ? (
           <BlogList setBlogs={setBlogsData} isMyBlog={true} blogs={blogsData} />
         ) : (

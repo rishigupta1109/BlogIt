@@ -48,9 +48,9 @@ export default function LoginPage({}: Props) {
     });
     console.log(result);
     if (result?.error) {
-      Message().error(result.error, false);
+      Message().error(result.error);
     } else {
-      Message().success("Login Successfull", false);
+      Message().success("Login Successfull");
       const session = await getSession();
       setSession(session);
       router.push("/");
@@ -66,7 +66,7 @@ export default function LoginPage({}: Props) {
       />
       <Form
         link={{
-          text: "Not have an account?",
+          text: "Don`t have an account?",
           url: "register",
         }}
         heading="Login"

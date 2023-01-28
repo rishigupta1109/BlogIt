@@ -1,9 +1,12 @@
-@import '../../../styles/globals';
-.bloglist{
-    width:100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill,400px);
-    justify-content: center;
-    gap:1.5rem;
-    align-content: center;
+@import "../../../styles/globals";
+.bloglist {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 400px);
+  justify-content: center;
+  gap: 1.5rem;
+  align-content: center;
+  @media screen and (max-width: 400px) {
+    grid-template-columns: repeat(auto-fill, 300px);
+  }
 }

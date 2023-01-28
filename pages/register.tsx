@@ -81,7 +81,7 @@ export default function RegisterPage({}: Props) {
       />
       <Form
         link={{
-          text: "already have an account?",
+          text: "Already have an account?",
           url: "login",
         }}
         heading="Register"

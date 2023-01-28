@@ -45,7 +45,7 @@ export default function CreateBlogPage({}: Props) {
     e.preventDefault();
     console.log(formData);
     if (formData.title.trim().length < 1 || formData.body.trim().length < 1) {
-      Message().warning("Please fill the required Fields", false);
+      Message().warning("Please fill the required Fields");
       return;
     }
     let data = new FormData();

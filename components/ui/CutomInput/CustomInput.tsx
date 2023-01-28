@@ -5,6 +5,8 @@ import Image from "next/image";
 import { IKUpload } from "imagekitio-react";
 import { AlertContext } from "../../../store/AlertContext";
 import { GlobalContext } from "../../../store/GlobalContext";
+import eyeIcon from "../../../public/images/eye-svgrepo-com.svg";
+import eyeSlashIcon from "../../../public/images/eye-slash-svgrepo-com.svg";
 type Props = {
   label: string;
   type: string;
@@ -28,6 +30,19 @@ export default function CustomInput({
     return (
       <CustomFileInput
         type="file"
+        label={label}
+        changeHandler={changeHandler}
+        name={name}
+        error={error}
+        errorText={errorText}
+        value={value}
+      />
+    );
+  }
+  if (type === "password") {
+    return (
+      <CustomPasswordInput
+        type="password"
         label={label}
         changeHandler={changeHandler}
         name={name}
@@ -119,6 +134,46 @@ const CustomFileInput = ({
               if (inputRef.current) inputRef.current.click();
             }}
           />
+        </div>
+        {error && <p className={styles.error}>{errorText}</p>}
+      </div>
+    </div>
+  );
+};
+
+const CustomPasswordInput = ({
+  label,
+  type,
+  value,
+  changeHandler,
+
+  name,
+  error = false,
+  errorText,
+}: Props) => {
+  const [showPassword, setShowPassword] = React.useState(false);
+  return (
+    <div className={styles.container}>
+      <label>{label}</label>
+      <div className={styles.subContainer}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <input
+            type={showPassword ? "text" : "password"}
+            value={value}
+            onChange={changeHandler}
+            name={name}
+            style={{ border: error ? "1px solid red" : "" }}
+          />
+          <div
+            className={styles.showPassword}
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? (
+              <Image alt="hide" src={eyeSlashIcon} height={30} width={30} />
+            ) : (
+              <Image alt="show" src={eyeIcon} height={30} width={30} />
+            )}
+          </div>
         </div>
         {error && <p className={styles.error}>{errorText}</p>}
       </div>
