@@ -227,7 +227,6 @@ function MobileNavLinks({ darkMode, pathname }: IMobileNavLinks) {
             <li>
               <CustomButton
                 onClick={() => {
-                  menuHandler();
                   signOut();
                 }}
                 hoverbg={
