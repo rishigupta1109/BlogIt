@@ -114,8 +114,13 @@ const AuthorButtons = ({
     try {
       const res = await deleteBlog(id);
       console.log(res);
-      Message().success(res.message);
-      if (setBlogs) setBlogs((prev) => prev.filter((blog) => blog._id !== id));
+      if (res.status === 200) {
+        Message().success(res.message);
+        if (setBlogs)
+          setBlogs((prev) => prev.filter((blog) => blog._id !== id));
+      } else {
+        Message().error(res.message);
+      }
     } catch (err: any) {
       console.log(err);
       Message().error(err);

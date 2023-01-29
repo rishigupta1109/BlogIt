@@ -1,26 +1,26 @@
 @import "../../styles/globals.scss";
 
-
-.modal{
-    @extend .column;
-    transition: 500ms ease-in-out;
-    justify-content: space-evenly;
+.modal {
+  @extend .column;
+  transition: 500ms ease-in-out;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 50;
+  background-color: $light-color-ternary;
+  padding: 1rem 5rem;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  border: 1px solid #00000010;
+  min-height: 200px;
+  min-width: 150px;
+  width: 60%;
+  opacity: 1;
+  div {
+    @extend .row;
+    justify-content: space-between;
     align-items: center;
-    z-index: 50;
-    background-color: $light-color-ternary;
-    padding:1rem 5rem;
-    position:fixed;
-    top:40vh;
-    left:40vw;
-    transform:translate(-50%,-50%);
-    border-radius: 6px;
-    border: 1px solid $dark-color-ternary;
-    box-shadow: 6px 6px 5px $light-color-primary ;
-    min-height: 250px;
-    min-width: 250px;
-    div{
-        @extend .row;
-        justify-content: space-between;
-        align-items: center;
-    }
+  }
 }

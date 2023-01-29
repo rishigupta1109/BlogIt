@@ -75,7 +75,8 @@ export default async function handler(
       const session = await getSession({ req });
       if (!session) return res.status(401).json({ message: "Unauthorized" });
       await connectMongo();
-      const blog = await Blogs.findOne({ id: blogId });
+      const blog = await Blogs.findOne({ _id: blogId });
+      console.log(session.user?.name, blog?.author);
       if (session?.user?.name !== blog?.author)
         return res.status(401).json({ message: "Unauthorized" });
       if (!blog) return res.status(404).json({ message: "Blog not found" });

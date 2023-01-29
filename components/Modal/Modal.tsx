@@ -13,7 +13,7 @@ export default function Modal({ text, onYes, onNo, show }: Props) {
     <div
       className={styles.modal}
       style={{
-        left: show ? "40vw" : "-100%",
+        left: show ? "40vw" : "30vw",
         opacity: show ? 1 : 0,
       }}
     >
