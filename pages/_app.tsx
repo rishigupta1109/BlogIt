@@ -41,6 +41,18 @@ const myFont = localFont({
 export default function App({ Component, pageProps }: AppProps) {
   const publicKey = "public_+pZA5vBl6tmNYnxYgMer/JCMlQk=";
   const urlEndpoint = "https://ik.imagekit.io/avy76kxdy";
+  const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
+    router.events.on("routeChangeStart", () => {
+      console.log("route change start");
+      setLoading(true);
+    });
+    router.events.on("routeChangeComplete", () => {
+      console.log("route change complete");
+      setLoading(false);
+    });
+  });
   return (
     <main className={myFont.className}>
       <IKContext
@@ -52,7 +64,10 @@ export default function App({ Component, pageProps }: AppProps) {
           <GlobalContextProvider>
             <Layout>
               <AlertContextProvider>
+                <>
+                  {loading && <Loader />}
                   <Component {...pageProps} />
+                </>
                 {/* ...child components */}
               </AlertContextProvider>
             </Layout>

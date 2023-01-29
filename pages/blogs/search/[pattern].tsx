@@ -3,13 +3,13 @@ import { IBlog } from "../../../utils/interfaces";
 import { server } from "./../../../utils/config";
 import { GetServerSidePropsContext } from "next";
 import BlogList from "../../../components/blog/bloglist/BlogList";
-
+import styles from "../../../styles/Home.module.scss";
 type Props = { blogs: Array<IBlog> };
 
 export default function SearchPage({ blogs }: Props) {
   return (
-    <div style={{ height: "100%", textAlign: "center" }}>
-      <h2>{blogs.length} blogs found</h2>
+    <div style={{ height: "100%" }}>
+      <h2 className={styles.heading}>{blogs.length} blog(s) found</h2>
       {blogs.length > 0 && <BlogList blogs={blogs} isMyBlog={false} />}
     </div>
   );
