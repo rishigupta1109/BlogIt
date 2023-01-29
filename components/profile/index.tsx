@@ -34,8 +34,8 @@ export default function UserProfile({
       <div className={styles.header}></div>
       <div className={styles.profile}>
         <Image src={`${avatar}`} alt="profile" height={150} width={150} />
-        {name && <h1>{name}</h1>}
-        {role && <h3>{role}</h3>}
+        {name && <h1 style={{ textTransform: "capitalize" }}>{name}</h1>}
+        {role && <h3 style={{ textTransform: "capitalize" }}>{role}</h3>}
         {description && <p>{description}</p>}
         {canEdit && (
           <CustomButton
