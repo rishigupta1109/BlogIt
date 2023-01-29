@@ -99,6 +99,7 @@ export default function EditBlogPage({ blog }: Props) {
       </div>
       {!preview && (
         <BlogForm
+          editMode={true}
           onSubmit={submitHandler}
           setFormData={setFormData}
           formData={formData}

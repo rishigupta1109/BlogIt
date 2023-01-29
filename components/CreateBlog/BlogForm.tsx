@@ -16,9 +16,15 @@ type Props = {
   setFormData: React.Dispatch<IBlog>;
   formData: IBlog;
   onSubmit: (e: any) => void;
+  editMode?: boolean;
 };
 
-export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
+export default function BlogForm({
+  setFormData,
+  formData,
+  onSubmit,
+  editMode,
+}: Props) {
   const { darkMode, setLoading } = useContext(GlobalContext);
   const { Message } = useContext(AlertContext);
   const onEditorContentChanged = (content: EditorContentChanged) => {
@@ -111,7 +117,7 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
         <CustomButton
           type="filled"
           corner="6px"
-          label="Publish"
+          label={editMode ? "Save" : "Publish"}
           bg={
             darkMode
               ? "var(--dark-color-secondary)"
