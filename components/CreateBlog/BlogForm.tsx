@@ -96,14 +96,15 @@ export default function BlogForm({ setFormData, formData, onSubmit }: Props) {
           className={styles.headingInput}
           required={true}
         />
-        <input
+
+        {/* <input
           type={"text"}
           value={formData?.tags}
           onChange={changeHandler}
           name="tags"
           placeholder="Comma seperated tags"
           className={styles.tagsInput}
-        />
+        /> */}
         <Editor value={formData.body} onChange={onEditorContentChanged} />
       </div>
       <div className={styles.actionButtons}>
