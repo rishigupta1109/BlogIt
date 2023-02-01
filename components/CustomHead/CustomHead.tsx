@@ -18,6 +18,10 @@ export default function CustomHead({
 }: Props) {
   return (
     <Head>
+      <meta
+        name="google-site-verification"
+        content="fFvFYWQUc04fMGVF3oJtTCUcqskDHlqo1ii-Yn1ejdQ"
+      />
       <link
         href="favicon-light.png"
         rel="icon"
