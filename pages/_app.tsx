@@ -11,7 +11,7 @@ import { IKContext } from "imagekitio-react";
 import { useRouter } from "next/router";
 import { Suspense, useEffect, useState } from "react";
 import Loader from "../components/ui/Loader/Loader";
-
+import { Analytics } from "@vercel/analytics/react";
 // Font files can be colocated inside of `pages`
 const myFont = localFont({
   src: [
@@ -67,6 +67,7 @@ export default function App({ Component, pageProps }: AppProps) {
                 <>
                   {loading && <Loader />}
                   <Component {...pageProps} />
+                  <Analytics />
                 </>
                 {/* ...child components */}
               </AlertContextProvider>
