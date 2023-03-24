@@ -55,6 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
   });
   return (
     <main className={myFont.className}>
+      <div id="portal" className={myFont.className} />
       <IKContext
         publicKey={publicKey}
         urlEndpoint={urlEndpoint}

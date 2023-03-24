@@ -128,7 +128,7 @@ const AuthorButtons = ({
     setLoading(false);
   };
   return (
-    <div className={styles.authorbtns}>
+    <>
       <Modal
         text="Are you sure you want to delete this blog?"
         show={showModal}
@@ -141,44 +141,46 @@ const AuthorButtons = ({
           setShowModal(false);
         }}
       />
-      <CustomButton
-        bg="transparent"
-        type="filled"
-        corner="100%"
-        border="none"
-        hoverbg="transparent"
-        padding="10px"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        link={`/myblogs/${id}`}
-      >
-        <Image
-          src={darkMode ? editLightIcon : editIcon}
-          alt="edit"
-          height={20}
-          width={20}
-        />
-      </CustomButton>
-      <CustomButton
-        padding="10px"
-        bg="transparent"
-        type="filled"
-        corner="100%"
-        border="none"
-        hoverbg="transparent"
-        onClick={(e) => {
-          e.stopPropagation();
-          setShowModal(true);
-        }}
-      >
-        <Image
-          src={darkMode ? deleteLightIcon : deleteIcon}
-          alt="delete"
-          height={20}
-          width={20}
-        />
-      </CustomButton>
-    </div>
+      <div className={styles.authorbtns}>
+        <CustomButton
+          bg="transparent"
+          type="filled"
+          corner="100%"
+          border="none"
+          hoverbg="transparent"
+          padding="10px"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          link={`/myblogs/${id}`}
+        >
+          <Image
+            src={darkMode ? editLightIcon : editIcon}
+            alt="edit"
+            height={20}
+            width={20}
+          />
+        </CustomButton>
+        <CustomButton
+          padding="10px"
+          bg="transparent"
+          type="filled"
+          corner="100%"
+          border="none"
+          hoverbg="transparent"
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowModal(true);
+          }}
+        >
+          <Image
+            src={darkMode ? deleteLightIcon : deleteIcon}
+            alt="delete"
+            height={20}
+            width={20}
+          />
+        </CustomButton>
+      </div>
+    </>
   );
 };

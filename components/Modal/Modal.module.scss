@@ -16,7 +16,7 @@
   border: 1px solid #00000010;
   min-height: 200px;
   min-width: 150px;
-  width: 60%;
+  width: min(400px, 50%);
   opacity: 1;
   div {
     @extend .row;
