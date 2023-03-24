@@ -1,68 +1,71 @@
 @import "../../styles/globals.scss";
 
-.container{
-    p{
-        margin: 0;
+.container {
+  p {
+    margin: 0;
+  }
+  blockquote {
+    background-color: $light-color-secondary;
+    border-left: 5px solid $dark-color-primary;
+    p {
+      font-style: italic;
+      color: $dark-color-primary;
+      padding: 15px;
     }
-    blockquote{
-        background-color: $light-color-secondary;
-        border-left: 5px solid $dark-color-primary;
-        p{
-            font-style: italic;
-            color: $dark-color-primary;
-            padding: 15px;
-        }
-        p::before{
-            content: open-quote;
-        }
-        p::after{
-            content: close-quote;
-            
-        }
+    p::before {
+      content: open-quote;
     }
-    a:hover{
-        text-decoration: underline;
+    p::after {
+      content: close-quote;
     }
-    pre{
-        background-color: $dark-color;
-        padding: 25px;
-        border-radius: 6px;
-        white-space: break-spaces;
-        code{
-            font-size: 16px;
-            color: white;
-            line-height: 25px;
-        }
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  pre {
+    background-color: $dark-color;
+    padding: 25px;
+    border-radius: 6px;
+    white-space: break-spaces;
+    code {
+      font-size: 16px;
+      color: white;
+      line-height: 25px;
     }
-        pre {
-            position: relative;
-            overflow: auto;
-            /* make space  */
-            margin: 15px 0;
-            border-radius: 6px;
-        }
-    
-        pre button {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            font-size: 0.9rem;
-            padding: 5px;
-            background-color: white;
-            border-radius: 6px;
-        }
-    
-        pre button:hover {
-            cursor: pointer;
-            background-color: $light-color-ternary;
-        }
-        ol,ul{
-            li{
-                font-size: 16px;
-            }
-        }
+  }
+  pre {
+    position: relative;
+    overflow: auto;
+    /* make space  */
+    margin: 15px 0;
+    border-radius: 6px;
+  }
+
+  pre button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 0.9rem;
+    padding: 5px;
+    background-color: white;
+    border-radius: 6px;
+  }
+
+  pre button:hover {
+    cursor: pointer;
+    background-color: $light-color-ternary;
+  }
+  ol,
+  ul {
+    li {
+      font-size: 16px;
+    }
+  }
 }
-.container.dark{
-    background-color: transparent;
-    color:$dark-color;
+.container.dark {
+  background-color: transparent;
+  color: $dark-color;
+}
+.viewer {
+  white-space: pre-wrap;
 }

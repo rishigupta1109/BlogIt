@@ -42,13 +42,14 @@ export default function Viewer(props: ViewerProps) {
     }
   }, []);
   const { darkMode } = useContext(GlobalContext);
+  const withEndLine = props.value.replace(/\n/g, "\n\n ");
   return (
     <div
       className={
         darkMode ? clsx(styles.container, styles.dark) : styles.container
       }
     >
-      <ReactMarkdown>{props.value}</ReactMarkdown>
+      <ReactMarkdown className={styles.viewer}>{withEndLine}</ReactMarkdown>
     </div>
   );
 }
