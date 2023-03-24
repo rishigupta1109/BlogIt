@@ -222,15 +222,18 @@ const CommentSection = ({
           </div>
         )}
         {commentsData?.length > 0 ? (
-          commentsData.reverse()?.map((comment, idx) => (
-            <div key={idx} className={styles.comment}>
-              <h4>{comment?.text}</h4>
-              <div>
-                <p>{comment?.user?.name} </p>
-                <p>{getDate(comment.createdAt)}</p>
-              </div>
-            </div>
-          ))
+          commentsData.reverse()?.map(
+            (comment, idx) =>
+              comment?.text?.trim()?.length > 0 && (
+                <div key={idx} className={styles.comment}>
+                  <h4>{comment?.text}</h4>
+                  <div>
+                    <p>{comment?.user?.name} </p>
+                    <p>{getDate(comment.createdAt)}</p>
+                  </div>
+                </div>
+              )
+          )
         ) : (
           <div style={{ textAlign: "center" }}>
             <h3>Be the first one to comment</h3>
