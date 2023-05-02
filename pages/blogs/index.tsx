@@ -19,6 +19,7 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   let classname = styles.homePage;
   const { darkMode } = useContext(GlobalContext);
   if (darkMode) classname = clsx(styles.homePage, styles.dark);
+
   return (
     <div>
       <CustomHead

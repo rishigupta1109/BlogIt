@@ -1,0 +1,55 @@
+@import "../../../styles/globals";
+
+.pagination {
+  margin: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+.pagebtn {
+  cursor: pointer;
+  padding: 5px 2px;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-color-primary;
+  color: $light-color-ternary;
+  border: 1px solid $light-color-primary;
+}
+.pagebtn:hover,
+.navbtn:hover,
+.active {
+  border: 1px solid $light-color-primary;
+  background-color: white;
+  color: $light-color-primary;
+}
+.navbtn {
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $light-color-primary;
+  color: $light-color-ternary;
+  border: 1px solid $light-color-primary;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: $light-color-ternary;
+  color: $light-color-primary;
+  border: 1px solid $light-color-primary;
+}
+.disabled:hover {
+  background-color: $light-color-ternary;
+  color: $light-color-primary;
+  border: 1px solid $light-color-primary;
+}

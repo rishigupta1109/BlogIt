@@ -37,7 +37,7 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
   } = data;
   console.log(data);
   const tags = data.tags.split(",").map((tag) => tag.trim());
-  const description = body.slice(0, 50) + "...";
+  const description = body.slice(0, 40) + "...";
   const { darkMode, setLoading } = useContext(GlobalContext);
   let classname = styles.container;
   if (darkMode) classname = clsx(classname, styles.dark);
@@ -89,7 +89,15 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
       </div>
       <div className={styles.textContainer}>
         <h1>{title}</h1>
-        <Viewer value={description} />
+        <span
+          style={{
+            fontSize: "1rem",
+            color: "var(--text-color-secondary)",
+            fontWeight: 500,
+          }}
+        >
+          <Viewer value={description} />
+        </span>
       </div>
       <div className={styles.tagContainer}>
         <Tags tags={tags} />
