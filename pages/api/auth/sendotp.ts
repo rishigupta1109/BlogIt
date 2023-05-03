@@ -8,8 +8,8 @@ const mail = (email: string, otp: string) => {
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "thebookbajaar@gmail.com",
-      pass: "yihuoxpbqpcqhobv",
+      user: process.env.MAIL_ID,
+      pass: process.env.MAIL_PASSWORD,
     },
   });
 
@@ -29,25 +29,6 @@ const mail = (email: string, otp: string) => {
   });
 };
 
-// const checkOtp = async (req, res, next) => {
-//   const { email, password, otp } = req.body;
-//   let userOtp;
-//   try {
-//     userOtp = await Otp.findOne({ email: email, code: otp });
-//   } catch (err) {
-//     return next(new Error("something went wrong"));
-//   }
-//   if (userOtp) {
-//     let expiry = new Date(userOtp.expiresIn);
-//     if (expiry > new Date()) {
-//       return res.json({ message: "otp verified", status: "success" });
-//     } else {
-//       return next(new Error("Otp expired"));
-//     }
-//   } else {
-//     return next(new Error("wrong otp"));
-//   }
-// };
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
