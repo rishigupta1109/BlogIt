@@ -1,5 +1,29 @@
 import { server } from "./config";
 
+export const sendOtp = async (email: string) => {
+  const response = await fetch("/api/auth/sendotp", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email }),
+  });
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};
+export const verifyOtp = async (email: string, otp: string) => {
+  const response = await fetch("/api/auth/verifyotp", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, otp }),
+  });
+  const data = await response.json();
+  data.status = response.status;
+  return data;
+};
 export const signup = async (name: string, email: string, password: string) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",

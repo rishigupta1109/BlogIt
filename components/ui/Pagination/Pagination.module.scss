@@ -12,8 +12,8 @@
   cursor: pointer;
   padding: 5px 2px;
   border-radius: 5px;
-  height: 40px;
-  width: 40px;
+  height: 2.5rem;
+  width: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,7 +21,6 @@
   color: $light-color-ternary;
   border: 1px solid $light-color-primary;
 }
-.pagebtn:hover,
 .navbtn:hover,
 .active {
   border: 1px solid $light-color-primary;
@@ -32,8 +31,8 @@
   cursor: pointer;
   padding: 5px 10px;
   border-radius: 5px;
-  height: 40px;
-  width: 40px;
+  height: 2.5rem;
+  width: 2.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,4 +51,11 @@
   background-color: $light-color-ternary;
   color: $light-color-primary;
   border: 1px solid $light-color-primary;
+}
+@media screen and (max-width: 480px) {
+  .navbtn,
+  .pagebtn {
+    height: 2rem;
+    width: 2rem;
+  }
 }

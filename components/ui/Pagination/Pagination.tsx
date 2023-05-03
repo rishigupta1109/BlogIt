@@ -14,7 +14,11 @@ const Pagination = ({
     <div className={styles.pagination}>
       {
         <span
-          onClick={() => handlePageClick({ selected: currentPage - 1 })}
+          onClick={() =>
+            handlePageClick({
+              selected: currentPage !== 0 ? currentPage - 1 : currentPage,
+            })
+          }
           className={
             currentPage === 0
               ? clsx(styles.navbtn, styles.disabled)
@@ -24,7 +28,7 @@ const Pagination = ({
           Prev
         </span>
       }
-      {pageCount + 1 >= 1 &&
+      {/* {pageCount + 1 >= 1 &&
         Array.from(Array(pageCount).keys()).map((item, index) => {
           return (
             <span
@@ -39,9 +43,15 @@ const Pagination = ({
               {index + 1}
             </span>
           );
-        })}
+        })} */}
+      <span className={styles.pagebtn}>{currentPage + 1}</span>
       <span
-        onClick={() => handlePageClick({ selected: currentPage + 1 })}
+        onClick={() =>
+          handlePageClick({
+            selected:
+              currentPage !== pageCount - 1 ? currentPage + 1 : currentPage,
+          })
+        }
         className={
           currentPage === pageCount - 1
             ? clsx(styles.navbtn, styles.disabled)

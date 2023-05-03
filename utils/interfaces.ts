@@ -21,6 +21,13 @@ export interface ILike {
   userId: string;
   blogId: string;
 }
+export interface IOtp {
+  _id?: string;
+  createdAt: Date;
+  email: string;
+  expiresIn: Date;
+  code: string;
+}
 export interface IBlog {
   _id: string;
   title: string;

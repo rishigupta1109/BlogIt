@@ -19,7 +19,8 @@ export default function BlogsPage({ blogs }: { blogs: IBlog[] }) {
   let classname = styles.homePage;
   const { darkMode } = useContext(GlobalContext);
   if (darkMode) classname = clsx(styles.homePage, styles.dark);
-
+  let b = [];
+  for (let i = 0; i < 20; i++) b.push(blogs[0]);
   return (
     <div>
       <CustomHead
