@@ -8,7 +8,14 @@ type Props = { blogs: Array<IBlog> };
 
 export default function SearchPage({ blogs }: Props) {
   return (
-    <div style={{ height: "100%" }}>
+    <div
+      style={{
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
       <h2 className={styles.heading}>{blogs.length} blog(s) found</h2>
       {blogs.length > 0 && <BlogList blogs={blogs} isMyBlog={false} />}
     </div>

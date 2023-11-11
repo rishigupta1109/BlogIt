@@ -89,7 +89,7 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
       </div>
       <div className={styles.textContainer}>
         <h1>{title}</h1>
-        <span
+        {/* <span
           style={{
             fontSize: "1rem",
             color: "var(--text-color-secondary)",
@@ -97,7 +97,7 @@ export default function BlogItem({ data, isMyBlog, setBlogs }: Props) {
           }}
         >
           <Viewer value={description} />
-        </span>
+        </span> */}
       </div>
       <div className={styles.tagContainer}>
         <Tags tags={tags} />

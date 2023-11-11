@@ -20,7 +20,7 @@ export default function Footer({}: Props) {
           src={mailIcon}
         ></Image>
 
-        <a href="mailto:thebookbajaar@gmail.com">Blogger`s Blog</a>
+        <a href="mailto:thebookbajaar@gmail.com">Blogger`s Block</a>
       </div>
       <div className="row" style={{ alignItems: "center" }}>
         Developed by :{"  "}
@@ -35,7 +35,7 @@ export default function Footer({}: Props) {
         </a>
       </div>
       <div className="row">
-        &copy; Copyright 2023 -<b> Blogger`s Blog!</b>{" "}
+        &copy; Copyright 2023 -<b> Blogger`s Block!</b>{" "}
       </div>
     </div>
   );
