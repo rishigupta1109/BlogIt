@@ -42,6 +42,11 @@ export default function CustomHead({
       ></meta>
       <meta property="og:title" content={title} />
       <meta property="og:image" content={image} />
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6665523909437127"
+        crossorigin="anonymous"
+      ></script>
     </Head>
   );
 }
